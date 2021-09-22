@@ -1,0 +1,16 @@
+import React from 'react'
+import { Route, Redirect, RouteProps } from 'react-router-dom'
+
+export type ProtectedRouteProps = {
+    isAuthenticated: boolean;
+    authenticationPath: string;
+} & RouteProps;
+
+export default function ProtectedRoute({isAuthenticated, authenticationPath, ...routeProps}: ProtectedRouteProps) {
+    if (isAuthenticated) {
+        return <Route {...routeProps} />;
+
+    } else {
+        return <Redirect to={{ pathname: authenticationPath }} />
+    }
+}
