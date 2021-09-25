@@ -1,17 +1,30 @@
 import React, { Component } from 'react'
-import { Button, FormGroup, TextField, Modal } from "@material-ui/core"
+import { Button, FormGroup, TextField, Dialog } from "@material-ui/core"
 import { Log } from './LogTable'
-
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 type LogEditProps = {
-    logToUpdate: Log
+    logToUpdate: { [key: string]: any}
     updateOff: () => void
     token: string
     fetchLogs: () => void
 }
-class LogEdit extends Component<LogEditProps, Log> {
+
+interface LogEditState {
+    date: Date | string
+    time: string
+    bloodGlucose: number | null 
+    carbs: number | null
+    bolus: number | null
+    correction_dose: number | null
+    notes: string | null
+    modal: boolean
+}
+
+class LogEdit extends Component<LogEditProps, LogEditState> {
     constructor(props: LogEditProps) {
         super(props)
         this.state = {
+            modal: true,
             date: this.props.logToUpdate.date,
             time: this.props.logToUpdate.time,
             bloodGlucose: this.props.logToUpdate.bloodGlucose,
@@ -22,9 +35,9 @@ class LogEdit extends Component<LogEditProps, Log> {
         }
     }
 
-logUpdate = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    fetch(`http://localhost:3000/log/update${this.props.logToUpdate.id}`, {
+logUpdate = () => {
+    let token = localStorage.getItem('token')
+    fetch(`http://localhost:3000/log/update/${this.props.logToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             log: {
@@ -43,10 +56,28 @@ logUpdate = (e: React.FormEvent<HTMLFormElement>): void => {
         }),
     }).then(res => {
         console.log(res)
-        this.props.fetchLogs()
         this.props.updateOff()
+        this.props.fetchLogs()
+     
     })
 }
+
+deleteLog = () => {
+    let token = localStorage.getItem('token')
+    fetch (`http://localhost:3000/log/delete/${this.props.logToUpdate.id}`, {
+      method: "DELETE",
+      headers: new Headers ({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.props.token}`,
+    })
+  })
+    .then((response) =>
+    console.log(response))
+    this.props.updateOff()
+    this.props.fetchLogs()
+  }
+
+
 
 
 handleChangeDate = (e: any ) => { this.setState({
@@ -77,13 +108,20 @@ handleChangeNotes= (e: any) => { this.setState({
     notes: e.target.value
 })}
 
+toggleModal = () => {
+    this.setState({ modal: false })
+    this.props.updateOff()
+}
+
 render() {
     return (
         <div>
-        <h1>Update an entry</h1>
-        <form>
-       
-                <div>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+            <ModalHeader toggle={this.toggleModal}>
+                Update a log entry.
+            </ModalHeader>
+            <ModalBody>
+            <div>
                     <TextField
                         type="date"
                         name="date"
@@ -133,10 +171,17 @@ render() {
                         onChange={this.handleChangeNotes}/>
                 </div>
                 <Button type="submit">SUBMIT</Button>
-     
-        </form>
-    </div>
 
+    </ModalBody>
+    <ModalFooter>
+        <Button onClick={() => {
+            this.logUpdate() 
+            this.toggleModal()}}
+            >Update</Button>
+    <Button onClick={this.deleteLog}>Delete</Button>
+    </ModalFooter>
+    </Modal>
+    </div>
 
     )
 }

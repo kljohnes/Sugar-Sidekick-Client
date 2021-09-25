@@ -23,8 +23,8 @@ import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 
 type AcceptedProps = {
   token:string 
-  logs: Log[]
-  fetchLogs: () => void
+  logs: Array<object>
+  fetchLogs: (e:any) => void
   editUpdateLog: (log: Log) => void
   updateOn: () => void
 }
@@ -40,22 +40,36 @@ export interface Log {
   notes: string
 }
 
-class LogTable extends Component<AcceptedProps, {}> {
-  deleteLog = (log: Log) => {
+class LogTable extends Component<AcceptedProps, Log> {
+  constructor(props: AcceptedProps) {
+    super(props)
+    this.state= {
+      id: 0,
+      date: null,
+      time: "",
+      bloodGlucose: 0,
+      carbs: 0,
+      bolus: 0,
+      correction_dose: 0,
+      notes: ""
+    }
+  }
+  deleteLog = async (e: any, id: number) => {
+    e.preventDefault()
     let token = localStorage.getItem('token')
-    fetch (`http:localhost:3000/log/delete/${log.id}`, {
+    await fetch (`http://localhost:3000/log/delete/${id}`, {
       method: 'DELETE',
       headers: new Headers ({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.props.token}`,
     })
   })
-    .then(() => this.props.fetchLogs())
-    console.log(`attempting to delete ${log.id}`)
-}
+    console.log(e)
+    return this.props.fetchLogs(e)
+  }
 
-logMapper = (): JSX.Element[] => {
-  return this.props.logs.map((log: Log, index: number) => {
+logMapper = () => {
+  return this.props.logs.map((log: any, index: number) => {
     return(
       <TableRow key={index}>
         <TableCell component="th" scope="row">
@@ -90,8 +104,8 @@ logMapper = (): JSX.Element[] => {
           }}>Edit</Button>
         </TableCell>
         <TableCell>
-          <Button onClick={()=> {
-            this.deleteLog(log)
+          <Button onClick={(e)=> {
+            this.deleteLog(e, log.id)
             console.log("Delete button clicked")
           }}>Delete</Button>
         </TableCell>

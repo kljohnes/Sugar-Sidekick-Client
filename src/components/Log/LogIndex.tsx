@@ -9,9 +9,9 @@ type AcceptedProps = {
 }
 
 interface LogIndexState {
-   logs: Log[],
+   logs: Array<object>,
    updateActive: boolean,
-   logToUpdate: any
+   logToUpdate: { [key: string ]: string | number}
 }
 
 class LogIndex extends Component <AcceptedProps, LogIndexState>{
@@ -20,14 +20,16 @@ class LogIndex extends Component <AcceptedProps, LogIndexState>{
         this.state = {
             logs: [],
             updateActive: false,
-            logToUpdate: null
+            logToUpdate: {}
 
         }
     }
 
     fetchLogs = (): void => {
+        let token = localStorage.getItem('token')
         console.log("Are we fetching now????");
           fetch("http://localhost:3000/log/mine", {
+          
             method: "GET",
             headers: new Headers({
               "Content-Type": "application/json",
@@ -42,7 +44,7 @@ class LogIndex extends Component <AcceptedProps, LogIndexState>{
           .catch((error) => console.log(error))
         }
 
-    editUpdateLog = (log: Log) : void => {
+    editUpdateLog = (log: any) => {
         this.setState({ logToUpdate: log })
     }
 
@@ -64,7 +66,7 @@ class LogIndex extends Component <AcceptedProps, LogIndexState>{
             <div><LogCreate token={this.props.token} fetchLogs={this.fetchLogs}/></div>
                 <div><LogTable token={this.props.token} fetchLogs={this.fetchLogs} logs={this.state.logs} editUpdateLog={this.editUpdateLog} updateOn={this.updateOn}/></div>
                 <div>
-                    {this.state.updateActive && this.state.logToUpdate ? (
+                    {this.state.updateActive ? (
                     <LogEdit 
                     logToUpdate={this.state.logToUpdate} 
                     updateOff={this.updateOff} token={this.props.token} fetchLogs={this.fetchLogs}/> 
