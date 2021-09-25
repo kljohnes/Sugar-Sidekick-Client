@@ -42,6 +42,8 @@ render() {
             <IconButton edge="start" color="secondary" aria-label="menu">
             <Link className="nav_links" to="/Auth">Login or Signup</Link></IconButton>
             <IconButton edge="start" color="secondary" aria-label="menu"> 
+            <Link className="nav_links" to="/ScriptIndex">Prescriptions</Link></IconButton>
+            <IconButton edge="start" color="secondary" aria-label="menu"> 
             <Link className="nav_links" to="/Log"><BsFillPersonFill/></Link></IconButton>
             <Button color="secondary" onClick={this.props.clearToken}><Typography color="warning">Log Out</Typography></Button>
            

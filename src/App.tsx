@@ -7,6 +7,7 @@ import { Route, Link, Switch, BrowserRouter as Router, Redirect } from 'react-ro
 import Footer from './Site/Footer'
 import Auth from './components/Auth/Auth'
 import LogCreate from './components/Log/LogCreate'
+import ScriptIndex from './components/Prescriptions/ScriptIndex'
 
 type AppState = {
   token: string
@@ -83,6 +84,7 @@ render() {
         {/* <Route exact path = '/'><Home/></Route> */}
         {this.protectedViews()}
         <Route exact path='/LogIndex'><LogIndex token={this.state.token}/></Route>
+        <Route exact path='/ScriptIndex'><ScriptIndex token={this.state.token}/></Route>
        {/* <Route exact path = "/auth"><Auth updateToken={this.updateToken}/></Route> */}
         
       </Router>

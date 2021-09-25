@@ -34,7 +34,6 @@ class LogCreate extends Component<LogProps, LogState> {
     }
 
     logCreate = (e: React.FormEvent<HTMLFormElement>):void => {
-        console.log("ARE WE EVEN ATTEMPTING TO WORK???????")
         let token = localStorage.getItem('token')
         e.preventDefault();
     
