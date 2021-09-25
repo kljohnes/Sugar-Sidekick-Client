@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom"
 import { Form, Formik } from "formik"
 import * as Yup from 'yup'
 
+
 const Schema = Yup.object({
     email: Yup.string().email("Invalid email").required("Email is required."),
     password: Yup.string()
@@ -21,6 +22,7 @@ interface Values {
 
 type Props = {
     updateToken: (newToken: string) => void;
+    
     // sessionToken: string;
 };
 
@@ -130,80 +132,7 @@ class UserCreate extends Component<Props, submitState> {
 }
 
 
-// type AcceptedProps = {
-//     updateToken: (newToken: string) => void;
-//     // sessionToken: string;
-// };
 
-// type UserState = {
-//     email: string,
-//     password: string,
-//     confirmPassword: string
-//     role: string
-
-// };
-
-// class UserCreate extends Component<AcceptedProps, UserState> {
-
-//     constructor(props: AcceptedProps){
-//         super(props)
-//         this.state = {
-//             email: "",
-//             password: "",
-//             confirmPassword: "",
-//             role: "user"
-//         }
-//     }
-
-
-//     handleSubmit = (event: any) => {
-//         event.preventDefault();
-//         fetch("http://localhost:3000/auth/register", {
-//             method: 'POST',
-//             body: JSON.stringify({user:{email: this.state.email, password: this.state.password, role: "user"}}),
-//             headers: new Headers({
-//                 'Content-Type': 'application/json'
-//             })
-//         }).then(
-//             (response) => response.json()
-//             ).then((data) => {
-//                 this.props.updateToken(data.sessionToken);
-//                 console.log(data)
-
-//             })
-//             .catch((err) => console.log(err))
-//     }
-//     render() {
-//         return (
-//             <div className = "main">
-//                 <div className = "form">
-//                     <br></br>
-//                     <Container>
-                      
-//                         <Paper>
-//                             <Typography> Sign up </Typography>
-                            
-//                             <form onSubmit={(e) => this.handleSubmit(e)}>
-//                             <TextField required label="email" type="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
-//                             <TextField required label="password" type="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
-//                             <TextField required label="confirm password" type="password" value={this.state.confirmPassword} onChange={(e)=>
-//                             this.setState({confirmPassword: e.target.value})}/>
-//                             <Button type="submit">Submit</Button>
-
-//                             </form>
-//                         </Paper>
-//                     </Container>
-//                 </div>
-//             </div>
-
-
-//         )
-  
-
-
-
-// }
-// }
 
 
 

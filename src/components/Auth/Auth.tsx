@@ -4,8 +4,8 @@ import UserCreate from './UserCreate'
 import { Button } from "@material-ui/core"
 
 type AcceptedProps = {
-    updateToken: (newToken: string) => void;
-
+    updateToken: (newToken: string) => void,
+    updateRole: (newRole: string) => void
 }
 
 type AuthState = {

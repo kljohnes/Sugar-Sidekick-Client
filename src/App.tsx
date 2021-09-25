@@ -1,68 +1,93 @@
 import React, { Component } from 'react';
 import './App.css';
 import Nav from './Site/Nav';
-import Log from './components/Log/Log'
 import Home from './Site/Home'
-import UserCreate from './components/Auth/UserCreate'
-import UserLogin from './components/Auth/UserLogin'
+import LogIndex from './components/Log/LogIndex'
 import { Route, Link, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom'
 import Footer from './Site/Footer'
 import Auth from './components/Auth/Auth'
 import LogCreate from './components/Log/LogCreate'
 
 type AppState = {
-  sessionToken: string | null;
-  authenticated: boolean
+  token: string
+  role: string
 }
 
 
-let sessionToken = localStorage.getItem("token")
-let validate = sessionToken ? true : false;
 
-class App extends Component<{}, AppState>{
+// let sessionToken = localStorage.getItem("token")
+
+class App extends Component< {}, AppState>{
   constructor(props: {}) {
     super(props);
     this.state = {
-      sessionToken: sessionToken,
-      authenticated: validate
+      token: '',
+      role: "user"
     }
+    this.protectedViews = this.protectedViews.bind(this)
 
   }
+
+  componentDidMount() : void {
+    if(localStorage.getItem('token')){
+      this.setState({
+        token: localStorage.getItem('token')!,
+      })
+    }
+    console.log("Component Did Mount")
+    console.log(this.state.token)
+  }
+
   updateToken = (newToken: string) => {
     localStorage.setItem("token", newToken);
     this.setState({
-      sessionToken: newToken
+      token: newToken
     });
+    console.log(this.state.token)
   };
 
-
-
-
-  protectedViews = () => {
-    return this.state.sessionToken === localStorage.getItem("token") && this.state.sessionToken != null ? <Route exact path='/Log'><Log sessionToken={this.state.sessionToken}/></Route> : ( <Route exact path= '/Auth'><Auth updateToken={this.updateToken}/></Route>)}
-    
-
-
-  clearToken = () => {
-    localStorage.clear();
-    this.setState({sessionToken: ""})
+  updateRole = (newRole: string) => {
+    if (newRole !== null) {
+    this.setState({role: newRole})
+    localStorage.setItem("role", newRole)
+  } else {
+    this.setState({role: "user"})
+    localStorage.setItem("role", "user")
   }
+} 
 
-
-  render() {
+protectedViews = () => {
+    return this.state.token === localStorage.getItem("token") ? (
+    <Route exact path='/'><Home/></Route> ): ( 
+    <Route exact path= '/Auth'>
+      <Auth 
+      updateToken={this.updateToken}
+      updateRole={this.updateRole}
+    /></Route>)}
+    
+clearToken = () => {
+    localStorage.clear();
+    this.setState({token: ""})
+  }
+render() {
     return (
       <div>
+     <Router>
      
-        
-         <Router>
-     
-        <Nav sessionToken={this.state.sessionToken} clearToken={this.clearToken}/>
-        <Route exact path = '/'><Home/></Route>
+        <Nav 
+          updateToken={this.updateToken} 
+          clearToken={this.clearToken}
+          updateRole={this.updateRole}
+          />
+        <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
+        {/* <Route exact path = '/'><Home/></Route> */}
         {this.protectedViews()}
+        <Route exact path='/LogIndex'><LogIndex token={this.state.token}/></Route>
        {/* <Route exact path = "/auth"><Auth updateToken={this.updateToken}/></Route> */}
         
       </Router>
-      <LogCreate />
+   
+      {/* // <LogCreate sessionToken={this.state.sessionToken} /> */}
       </div>
 
 

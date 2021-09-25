@@ -19,20 +19,22 @@ interface Values {
 }
 
 type Props = {
-    updateToken: (newToken: string) => void;
+    updateToken: (newToken: string) => void
+    // updateRole: {role: string} => void
     // sessionToken: string;
 };
 
 type submitState = {
-  loggedIn: boolean
+  loggedIn: boolean,
+  role: string
 };
 
 class UserLogin extends Component<Props, submitState> {
     constructor(props: Props){
         super(props)
         this.state = {
-            loggedIn: false
-            
+            loggedIn: false,
+            role: "user"            
         }
         this.handleSubmit=this.handleSubmit.bind(this)
     }
@@ -49,7 +51,7 @@ class UserLogin extends Component<Props, submitState> {
             (response) => response.json()
             ).then((data) => {
                 if(!data.error){
-                    window.localStorage.setItem('token', data.sessionToken)
+                    // window.localStorage.setItem('token', data.sessionToken)
                     this.props.updateToken(data.sessionToken);
                     this.setState( { loggedIn: true })
                     console.log("Logged In!", data)

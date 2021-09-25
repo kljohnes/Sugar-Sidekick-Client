@@ -1,45 +1,47 @@
 import React, { Component } from 'react'
-import { Form, Formik } from 'formik'
-import { TextField, Typography, Button } from '@material-ui/core'
+import { TextField, Button, FormGroup } from '@material-ui/core'
 
-interface LogProps {
-
+type LogProps = {
+    fetchLogs: () => void
+    token: string
 }
 
-interface LogState {
+type LogState = {
     date: Date | string,
     time: string,
-    category: string,
-    bloodGlucose: number,
-    carbs: number,
-    bolus: number,
-    correction_dose: number,
-    notes: string
+    bloodGlucose: number | null 
+    carbs: number | null
+    bolus: number | null
+    correction_dose: number | null
+    notes: string | null
 }
 
-export default class LogCreate extends Component<LogProps, LogState> {
+class LogCreate extends Component<LogProps, LogState> {
     constructor(props: LogProps){
         super(props)
         this.state = {
             date: '',
             time: '',
-            category: '',
             bloodGlucose: 0,
             carbs: 0,
-            bolus:0,
+            bolus: 0,
             correction_dose: 0,
             notes: ''
         }
-        this.logCreate = this.logCreate.bind(this)
+        // this.logCreate = this.logCreate.bind(this)
     }
 
-    logCreate(values: LogState):void {
+    logCreate = (e: React.FormEvent<HTMLFormElement>):void => {
+        console.log("ARE WE EVEN ATTEMPTING TO WORK???????")
+        let token = localStorage.getItem('token')
+        e.preventDefault();
+    
         fetch("http://localhost:3000/log/create", {
             method: 'POST',
-            body: JSON.stringify({log:{
+            body: JSON.stringify({
+                log:{
                 date: this.state.date, 
                 time: this.state.time,
-                category: this.state.category,
                 bloodGlusose: this.state.bloodGlucose,
                 carbs: this.state.carbs,
                 bolus: this.state.bolus,
@@ -47,130 +49,116 @@ export default class LogCreate extends Component<LogProps, LogState> {
                 notes: this.state.notes
             }}),
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.props.token}`
             })
-        }).then(
-            (response) => response.json()
-            ).then((data) => {
-               console.log(data)
-               this.setState(data)
-
-
+        }).then(response => response.json())
+          .then(logData => {
+              console.log(logData)
+              this.setState({
+                  date: '',
+                  time: '',
+                  bloodGlucose: 0,
+                  carbs: 0,
+                  bolus: 0,
+                  correction_dose: 0,
+                  notes: ''
             })
-            .catch((err) => console.log(err))
-    } 
+            this.props.fetchLogs()
+          })}
     
+
+
+    handleChangeDate = (e: any ) => { this.setState({
+        date: e.target.value
+    })}
+    
+    handleChangeTime = (e: any) => { this.setState({
+            time: e.target.value
+    })}
+    
+    handleChangeBG = (e: any) => { this.setState({
+        bloodGlucose: e.target.value
+    })}
+   
+    handleChangeCarbs = (e: any) => { this.setState({
+        carbs: e.target.value
+    })}
+    
+    handleChangeBolus = (e: any) => { this.setState({
+        bolus: e.target.value
+    })}
+    
+    handleChangeCorrection = (e: any) => { this.setState({
+        correction_dose: e.target.value
+    })}
+
+    handleChangeNotes= (e: any) => { this.setState({
+        notes: e.target.value
+    })}
 
     render() {
         return (
             <div>
-  
-            <Typography>Add A Log Entry</Typography>
-            <Formik
-            initialValues={{date: '', time: '', category: '', bloodGlucose: 0, carbs: 0, bolus: 0, correction_dose: 0, notes: ''}}
-            onSubmit={(values)=> {
-                this.logCreate(values)}}>
-            {({ values, handleChange, handleBlur, errors, touched  }) => (
-            <Form>
-                <div>
-                    <TextField
-                    name="date"
-                    type="date"
-                    value={values.date}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                {/* {errors.email && touched.email ? (
-                    <div>{errors.email}</div>
-                ) : null } */}
-                </div> 
-                <div>
-                    <TextField
-                    name="time"
-                    type="time"
-                    value={values.time}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {/* {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
-                ) : null } */}
-                </div>
+                <h1>Create a Log Entry</h1>
+                <form onSubmit={this.logCreate} >
                
-                <div>
-                    <TextField
-                    name="bloodGlucose"
-                    label="Blood Glucose"
-                    type="number"
-                    value={values.bloodGlucose}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {/* {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
-                ) : null } */}
-                </div>
-                <div>
-                    <TextField
-                    name="carbs"
-                    label="Carb (grams)"
-                    type="number"
-                    value={values.carbs}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {/* {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
-                ) : null } */}
-                </div>         <div>
-                    <TextField
-                    name="bolus"
-                    label="Bolus (units)"
-                    type="number"
-                    value={values.bolus}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {/* {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
-                ) : null } */}
-                </div>
-                <div>
-                    <TextField
-                    name="correction_dose"
-                    label="Correction Dose (units)"
-                    type="number"
-                    value={values.correction_dose}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {/* {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
-                ) : null } */}
-                </div>
-                <div>
-                    <TextField
-                    name="Notes"
-                    label="Notes"
-                    type="text"
-                    value={values.notes}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {/* {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
-                ) : null } */}
-                </div>
+                        <div>
+                            <TextField
+                                type="date"
+                                name="date"
+                                onChange={this.handleChangeDate} />
+                        </div>
+                        <div>
+                            <TextField
+                                label="Time"
+                                type="text"
+                                name="time"
+                                onChange={this.handleChangeTime}/>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Blood Glucose"
+                                type="number"
+                                name="bloodGlucose"
+                                onChange={this.handleChangeBG}/>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Carbs"
+                                type="number"
+                                name="carbs"
+                                onChange={this.handleChangeCarbs}/>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Bolus"
+                                type="number"
+                                name="bolus"
+                                onChange={this.handleChangeBolus}/>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Correction"
+                                type="number"
+                                name="correction_dose"
+                                onChange={this.handleChangeCorrection}/>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Notes"
+                                multiline
+                                type="text"
+                                name="notes"
+                                onChange={this.handleChangeNotes}/>
+                        </div>
+                        <Button type="submit">SUBMIT</Button>
+             
+                </form>
+            </div>
 
-                <Button type="submit">Submit</Button>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
-            </Form>)}
-
-
-</Formik>
-</div>
-            
         )
     }
 }
 
+export default LogCreate

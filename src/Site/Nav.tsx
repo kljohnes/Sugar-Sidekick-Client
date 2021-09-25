@@ -11,7 +11,9 @@ import {BsFillHouseDoorFill, BsFillPersonFill } from 'react-icons/bs'
 
 type AcceptedProps = {
   clearToken: () => void;
-  sessionToken: string | null
+  // sessionToken: string | null
+  updateToken: (newToken:string) => void
+  updateRole: (newRole:string) => void
 
 }
 
@@ -31,12 +33,12 @@ render() {
            
           <Toolbar> 
         
-          <Typography variant="h4">Welcome To Sugar Sidekick </Typography>
+          <Typography variant="h4">Welcome! </Typography>
           <IconButton edge="start" color="secondary" aria-label="menu">
             <Link className="nav_links" to="/"><BsFillHouseDoorFill/></Link></IconButton>
           
             <IconButton edge="start" color="secondary" aria-label="menu">
-            <Link className="nav_links" to="/Log"><BsPencilSquare/></Link></IconButton>
+            <Link className="nav_links" to="/LogIndex"><BsPencilSquare/></Link></IconButton>
             <IconButton edge="start" color="secondary" aria-label="menu">
             <Link className="nav_links" to="/Auth">Login or Signup</Link></IconButton>
             <IconButton edge="start" color="secondary" aria-label="menu"> 
