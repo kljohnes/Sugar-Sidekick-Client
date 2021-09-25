@@ -9,10 +9,11 @@ type LogProps = {
 type LogState = {
     date: Date | string,
     time: string,
-    bloodGlucose: number | null 
+    blood_glucose: number | null 
     carbs: number | null
     bolus: number | null
     correction_dose: number | null
+    long_acting_dose: number | null
     notes: string | null
 }
 
@@ -22,10 +23,11 @@ class LogCreate extends Component<LogProps, LogState> {
         this.state = {
             date: '',
             time: '',
-            bloodGlucose: 0,
+            blood_glucose: 0,
             carbs: 0,
             bolus: 0,
             correction_dose: 0,
+            long_acting_dose: 0,
             notes: ''
         }
         // this.logCreate = this.logCreate.bind(this)
@@ -42,10 +44,11 @@ class LogCreate extends Component<LogProps, LogState> {
                 log:{
                 date: this.state.date, 
                 time: this.state.time,
-                bloodGlusose: this.state.bloodGlucose,
+                blood_glusose: this.state.blood_glucose,
                 carbs: this.state.carbs,
                 bolus: this.state.bolus,
                 correction_dose: this.state.correction_dose,
+                long_acting_dose: this.state.long_acting_dose,
                 notes: this.state.notes
             }}),
             headers: new Headers({
@@ -58,10 +61,11 @@ class LogCreate extends Component<LogProps, LogState> {
               this.setState({
                   date: '',
                   time: '',
-                  bloodGlucose: 0,
+                  blood_glucose: 0,
                   carbs: 0,
                   bolus: 0,
                   correction_dose: 0,
+                  long_acting_dose: 0,
                   notes: ''
             })
             this.props.fetchLogs()
@@ -78,7 +82,7 @@ class LogCreate extends Component<LogProps, LogState> {
     })}
     
     handleChangeBG = (e: any) => { this.setState({
-        bloodGlucose: e.target.value
+        blood_glucose: e.target.value
     })}
    
     handleChangeCarbs = (e: any) => { this.setState({
@@ -91,6 +95,10 @@ class LogCreate extends Component<LogProps, LogState> {
     
     handleChangeCorrection = (e: any) => { this.setState({
         correction_dose: e.target.value
+    })}
+
+    handleChangeLongActing = (e: any) => { this.setState({
+        long_acting_dose: e.target.value
     })}
 
     handleChangeNotes= (e: any) => { this.setState({
@@ -143,6 +151,14 @@ class LogCreate extends Component<LogProps, LogState> {
                                 type="number"
                                 name="correction_dose"
                                 onChange={this.handleChangeCorrection}/>
+                        </div>
+                        <div>
+                        <TextField
+                                label="Long Acting Dose"
+                                type="number"
+                                name="long_acting_dose"
+                                onChange={this.handleChangeLongActing}/>
+                            
                         </div>
                         <div>
                             <TextField

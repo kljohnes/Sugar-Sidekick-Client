@@ -12,10 +12,11 @@ type LogEditProps = {
 interface LogEditState {
     date: Date | string
     time: string
-    bloodGlucose: number | null 
+    blood_glucose: number | null 
     carbs: number | null
     bolus: number | null
     correction_dose: number | null
+    long_acting_dose: number | null
     notes: string | null
     modal: boolean
 }
@@ -27,10 +28,11 @@ class LogEdit extends Component<LogEditProps, LogEditState> {
             modal: true,
             date: this.props.logToUpdate.date,
             time: this.props.logToUpdate.time,
-            bloodGlucose: this.props.logToUpdate.bloodGlucose,
+            blood_glucose: this.props.logToUpdate.blood_glucose,
             carbs: this.props.logToUpdate.carbs,
             bolus: this.props.logToUpdate.bolus,
-            correction_dose: this.props.logToUpdate.bolus,
+            correction_dose: this.props.logToUpdate.correction_dose,
+            long_acting_dose: this.props.logToUpdate.long_acting_dose,
             notes: this.props.logToUpdate.notes
         }
     }
@@ -43,10 +45,11 @@ logUpdate = () => {
             log: {
                 date: this.state.date,
                 time: this.state.time,
-                bloodGlucose: this.state.bloodGlucose,
+                blood_glucose: this.state.blood_glucose,
                 carbs: this.state.carbs,
                 bolus: this.state.bolus,
-                correction_dose: this.state.bolus,
+                correction_dose: this.state.correction_dose,
+                long_acting_dose: this.state.long_acting_dose,
                 notes: this.state.notes
             },
         }),
@@ -62,20 +65,20 @@ logUpdate = () => {
     })
 }
 
-deleteLog = () => {
-    let token = localStorage.getItem('token')
-    fetch (`http://localhost:3000/log/delete/${this.props.logToUpdate.id}`, {
-      method: "DELETE",
-      headers: new Headers ({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.props.token}`,
-    })
-  })
-    .then((response) =>
-    console.log(response))
-    this.props.updateOff()
-    this.props.fetchLogs()
-  }
+// deleteLog = () => {
+//     let token = localStorage.getItem('token')
+//     fetch (`http://localhost:3000/log/delete/${this.props.logToUpdate.id}`, {
+//       method: "DELETE",
+//       headers: new Headers ({
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${this.props.token}`,
+//     })
+//   })
+//     .then((response) =>
+//     console.log(response))
+//     this.props.updateOff()
+//     this.props.fetchLogs()
+//   }
 
 
 
@@ -89,7 +92,7 @@ handleChangeTime = (e: any) => { this.setState({
 })}
 
 handleChangeBG = (e: any) => { this.setState({
-    bloodGlucose: e.target.value
+    blood_glucose: e.target.value
 })}
 
 handleChangeCarbs = (e: any) => { this.setState({
@@ -102,6 +105,10 @@ handleChangeBolus = (e: any) => { this.setState({
 
 handleChangeCorrection = (e: any) => { this.setState({
     correction_dose: e.target.value
+})}
+
+handleChangeLongActing = (e: any) => { this.setState({
+    long_acting_dose: e.target.value
 })}
 
 handleChangeNotes= (e: any) => { this.setState({
@@ -164,13 +171,19 @@ render() {
                 </div>
                 <div>
                     <TextField
+                        label="Long Acting Dose"
+                        type="number"
+                        name="long_acting_dose"
+                        onChange={this.handleChangeLongActing}/>
+                </div>
+                <div>
+                    <TextField
                         label="Notes"
                         multiline
                         type="text"
                         name="notes"
                         onChange={this.handleChangeNotes}/>
                 </div>
-                <Button type="submit">SUBMIT</Button>
 
     </ModalBody>
     <ModalFooter>
@@ -178,7 +191,7 @@ render() {
             this.logUpdate() 
             this.toggleModal()}}
             >Update</Button>
-    <Button onClick={this.deleteLog}>Delete</Button>
+    {/* <Button onClick={this.deleteLog}>Delete</Button> */}
     </ModalFooter>
     </Modal>
     </div>

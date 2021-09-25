@@ -33,10 +33,11 @@ export interface Log {
   id?: number,
   date: Date | null
   time: string,
-  bloodGlucose: number,
+  blood_glucose: number,
   carbs: number,
   bolus: number,
   correction_dose: number,
+  long_acting_dose: number,
   notes: string
 }
 
@@ -47,10 +48,11 @@ class LogTable extends Component<AcceptedProps, Log> {
       id: 0,
       date: null,
       time: "",
-      bloodGlucose: 0,
+      blood_glucose: 0,
       carbs: 0,
       bolus: 0,
       correction_dose: 0,
+      long_acting_dose: 0,
       notes: ""
     }
   }
@@ -82,7 +84,7 @@ logMapper = () => {
         {log.time}
         </TableCell>
         <TableCell component="td" scope="row">
-        {log.bloodGlucose}
+        {log.blood_glucose}
         </TableCell>
         <TableCell component="td" scope="row">
         {log.carbs}
@@ -92,6 +94,9 @@ logMapper = () => {
         </TableCell>
         <TableCell component="td" scope="row">
         {log.correction_dose}
+        </TableCell>
+        <TableCell component="td" scope="row">
+        {log.long_acting_dose}
         </TableCell>
         <TableCell component="td" scope="row">
         {log.notes}
@@ -128,6 +133,7 @@ render (){
               <TableCell>Carbs</TableCell>
               <TableCell>Bolus</TableCell>
               <TableCell>Correction Dose</TableCell>
+              <TableCell>Long Acting Dose</TableCell>
               <TableCell>Notes</TableCell>
             </TableRow>
           </TableHead>
