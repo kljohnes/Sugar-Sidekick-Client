@@ -50,13 +50,13 @@ class UserLogin extends Component<Props, submitState> {
         }).then(
             (response) => response.json()
             ).then((data) => {
-                if(!data.error){
+                if(data.message === "User successfully logged in."){
                     // window.localStorage.setItem('token', data.sessionToken)
                     this.props.updateToken(data.sessionToken);
                     this.setState( { loggedIn: true })
                     console.log("Logged In!", data)
                     } else {
-                        alert(`${data}.error.errors[0].message`)
+                        alert(data.message)
                     }
                 })
             .catch((err) => console.log(err))
@@ -64,7 +64,7 @@ class UserLogin extends Component<Props, submitState> {
  render() {
         return (
         <div>
-        {( this.state.loggedIn === true ) ? <Redirect to= '/' /> : null}
+        {( this.state.loggedIn === true && this.state.role === "admin" ) ? <Redirect to= '/AdminHome' /> : null}
         <Typography>Log In</Typography>
             <Formik
             initialValues={{email: '', password: ''}}

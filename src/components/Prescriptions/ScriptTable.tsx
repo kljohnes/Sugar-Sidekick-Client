@@ -1,7 +1,6 @@
 import  React, { Component } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@material-ui/core"
-import { NavItemProps } from 'reactstrap';
 
 // const columns = [
 //   { field: 'id', headerName: 'ID', width: 70 },
@@ -99,7 +98,6 @@ scriptMapper = () => {
 }
 render (){
   return (
-    // console.log("ARE WE WORKING?????????")
     <div>
       <h1>Prescriptions</h1>
       <TableContainer component={Paper}>

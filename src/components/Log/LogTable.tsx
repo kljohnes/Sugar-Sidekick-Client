@@ -1,6 +1,6 @@
 import  React, { Component } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
-import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@material-ui/core"
+import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableSortLabel } from "@material-ui/core"
 
 // const columns = [
 //   { field: 'id', headerName: 'ID', width: 70 },
@@ -125,9 +125,13 @@ render (){
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <TableRow >
               <TableCell>id</TableCell>
-              <TableCell>Date</TableCell>
+              <TableCell>Date
+                <TableSortLabel active={"date"==="date"}>
+
+                </TableSortLabel>
+              </TableCell>
               <TableCell>Time</TableCell>
               <TableCell>Blood Glucose</TableCell>
               <TableCell>Carbs</TableCell>

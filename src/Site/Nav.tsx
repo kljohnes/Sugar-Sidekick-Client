@@ -29,9 +29,12 @@ render() {
 
     return (
         
-        <AppBar position="static" color="primary">
+        <AppBar position="static" className="navbar">
            
-          <Toolbar> 
+          <Toolbar sx={{
+            backgroundColor: "gray",
+            
+          }}> 
         
           <Typography variant="h4">Welcome! </Typography>
           <IconButton edge="start" color="secondary" aria-label="menu">
@@ -45,6 +48,7 @@ render() {
             <Link className="nav_links" to="/ScriptIndex">Prescriptions</Link></IconButton>
             <IconButton edge="start" color="secondary" aria-label="menu"> 
             <Link className="nav_links" to="/Log"><BsFillPersonFill/></Link></IconButton>
+            <Link className="nav_links" to="/CarbCount">Carb Count</Link>
             <Button color="secondary" onClick={this.props.clearToken}><Typography color="warning">Log Out</Typography></Button>
            
             </Toolbar>

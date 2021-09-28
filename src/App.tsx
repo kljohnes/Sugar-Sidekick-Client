@@ -8,6 +8,8 @@ import Footer from './Site/Footer'
 import Auth from './components/Auth/Auth'
 import LogCreate from './components/Log/LogCreate'
 import ScriptIndex from './components/Prescriptions/ScriptIndex'
+import AdminHome from './Site/AdminHome'
+import Carbs from './components/CarbCount/Carbs'
 
 type AppState = {
   token: string
@@ -25,7 +27,7 @@ class App extends Component< {}, AppState>{
       token: '',
       role: "user"
     }
-    this.protectedViews = this.protectedViews.bind(this)
+    // this.protectedViews = this.protectedViews.bind(this)
 
   }
 
@@ -57,15 +59,26 @@ class App extends Component< {}, AppState>{
   }
 } 
 
-protectedViews = () => {
-    return this.state.token === localStorage.getItem("token") ? (
-    <Route exact path='/'><Home/></Route> ): ( 
-    <Route exact path= '/Auth'>
-      <Auth 
-      updateToken={this.updateToken}
-      updateRole={this.updateRole}
-    /></Route>)}
+// protectedViews = () => {
+//     return this.state.token === localStorage.getItem("token") ? (
+//     <Route exact path='/'><Home/></Route> ): ( 
+//     <Route exact path= '/Auth'>
+//       <Auth 
+//       updateToken={this.updateToken}
+//       updateRole={this.updateRole}
+//     /></Route>)}
     
+adminViews = () => {
+      return this.state.token === localStorage.getItem("token") && 
+      this.state.role === "admin" ? (
+      <Route exact path='./AdminHome'><AdminHome/></Route> ): ( 
+      <Route exact path= '/Auth'>
+        <Auth 
+        updateToken={this.updateToken}
+        updateRole={this.updateRole}
+      /></Route>)}
+
+   
 clearToken = () => {
     localStorage.clear();
     this.setState({token: ""})
@@ -80,13 +93,16 @@ render() {
           clearToken={this.clearToken}
           updateRole={this.updateRole}
           />
+        <Switch>
+        <Route exact path='/CarbCount'><Carbs/></Route>
         <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
         {/* <Route exact path = '/'><Home/></Route> */}
-        {this.protectedViews()}
+        {/* {this.protectedViews()} */}
         <Route exact path='/LogIndex'><LogIndex token={this.state.token}/></Route>
         <Route exact path='/ScriptIndex'><ScriptIndex token={this.state.token}/></Route>
+        {this.adminViews()}
        {/* <Route exact path = "/auth"><Auth updateToken={this.updateToken}/></Route> */}
-        
+        </Switch>
       </Router>
    
       {/* // <LogCreate sessionToken={this.state.sessionToken} /> */}

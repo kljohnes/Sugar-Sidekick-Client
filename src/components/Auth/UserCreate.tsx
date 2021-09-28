@@ -51,14 +51,26 @@ class UserCreate extends Component<Props, submitState> {
         }).then(
             (response) => response.json()
             ).then((data) => {
-                if(!data.error){
+                if(data.message === "User successfully registered."){
                 window.localStorage.setItem('token', data.sessionToken)
                 this.props.updateToken(data.sessionToken);
                 this.setState( { registered: true })
-                console.log("USER Created!", data)
+                console.log("User Created!", data)
                 } else {
-                    alert(`${data}.error.errors[0].message`)
+                    console.log(data)
+                    alert(`${data.message}`)
                 }
+                    
+                
+                // if(!data.error){
+                // window.localStorage.setItem('token', data.sessionToken)
+                // this.props.updateToken(data.sessionToken);
+                // this.setState( { registered: true })
+                // console.log("User Created!", data)
+                // } else {
+                //     console.log(data)
+                //     alert(`${data.message}`)
+                // }
 
 
             })
