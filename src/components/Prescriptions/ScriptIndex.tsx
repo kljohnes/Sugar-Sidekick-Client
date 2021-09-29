@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ScriptCreate from './ScriptCreate';
 import ScriptTable from './ScriptTable';
-import { Script } from './ScriptTable';
 import ScriptEdit from './ScriptEdit';
 
 type AcceptedProps = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Button, FormGroup, TextField, Dialog } from "@material-ui/core"
-import { Script } from './ScriptTable'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 
@@ -54,22 +53,6 @@ scriptUpdate = () => {
      
     })
 }
-
-// deleteLog = () => {
-//     let token = localStorage.getItem('token')
-//     fetch (`http://localhost:3000/log/delete/${this.props.logToUpdate.id}`, {
-//       method: "DELETE",
-//       headers: new Headers ({
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${this.props.token}`,
-//     })
-//   })
-//     .then((response) =>
-//     console.log(response))
-//     this.props.updateOff()
-//     this.props.fetchLogs()
-//   }
-
 
 
 

@@ -2,25 +2,6 @@ import  React, { Component } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@material-ui/core"
 
-// const columns = [
-//   { field: 'id', headerName: 'ID', width: 70 },
-//   { field: 'date', headerName: 'Date', width: 130 },  
-//   {field: 'time', headerName: 'Time', width: 130 },
-//   { field: 'category', headerName: 'Category', width: 130 },
-//   { field: 'blood-glucose', headerName: 'Blood Glucose', width: 130 },
-//   { field: 'Carbs', headerName: 'Carbs', width: 130 },
-//   { field: 'Bolus', headerName: 'Bolus', width: 130 },
-//   { field: 'Correction', headerName: 'Correction Dose', width: 130 },
-//   { field: 'Notes', headerName: 'Notes', width: 130 },
-
-
-// ];
-
-// const rows = [
-//   { id: 1, lastName : 'Snow', firstName: 'Jon', age: 35 },
-
-// ];
-
 type AcceptedProps = {
   token:string 
   scripts: Array<object>

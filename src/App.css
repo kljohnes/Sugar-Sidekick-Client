@@ -1,16 +1,16 @@
 body{
-    background-image: url("./assets/background.jpg");
+    /* background-image: url("./assets/background.jpg");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     color: white;
     background-color: gray;
+    margin-bottom: 10rem;
     
 }
 
-#carb-data {
+#carbs {
     display: grid;
-    border: 2px solid white;
-    height: 200px;
-    width: 300px;
-
+    margin-left: 20%;
+    margin-right: 20%;
 }
+

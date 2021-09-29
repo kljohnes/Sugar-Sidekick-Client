@@ -49,6 +49,8 @@ render() {
             <IconButton edge="start" color="secondary" aria-label="menu"> 
             <Link className="nav_links" to="/Log"><BsFillPersonFill/></Link></IconButton>
             <Link className="nav_links" to="/CarbCount">Carb Count</Link>
+            <Link className="nav_links" to="/AdminHome">Admin</Link>
+            <Link className="nav_links" to= "/Contact">Formspree</Link>
             <Button color="secondary" onClick={this.props.clearToken}><Typography color="warning">Log Out</Typography></Button>
            
             </Toolbar>
