@@ -72,7 +72,7 @@ class App extends Component< {}, AppState>{
 adminViews = () => {
       return this.state.token === localStorage.getItem("token") && 
       this.state.role === "admin" ? (
-      <Route exact path='./AdminHome'><AdminHome token={this.state.token} updateToken={this.updateToken}/></Route> ): ( 
+      <Route exact path='./AdminHome'><AdminHome token={this.state.token}/></Route> ): ( 
       <Route exact path= '/Auth'>
         <Auth 
         updateToken={this.updateToken}
@@ -86,7 +86,7 @@ clearToken = () => {
   }
 render() {
     return (
-      <div>
+      <div className="app">
      <Router>
      
         <Nav 
@@ -97,12 +97,12 @@ render() {
         <Switch>
         <Route exact path='/CarbCount'><Carbs/></Route>
         <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
-        {/* <Route exact path = '/'><Home/></Route> */}
+        <Route exact path = '/'><Home/></Route>
         {/* {this.protectedViews()} */}
         <Route exact path='/LogIndex'><LogIndex token={this.state.token}/></Route>
         <Route exact path='/ScriptIndex'><ScriptIndex token={this.state.token}/></Route>
         <Route exact path ='/Contact'><Formspree /></Route>
-        <Route exact path='/AdminHome'><AdminHome updateToken={this.updateToken} token={this.state.token}/></Route>
+        <Route exact path='/AdminHome'><AdminHome token={this.state.token}/></Route>
         {/* {this.adminViews()} */}
        {/* <Route exact path = "/auth"><Auth updateToken={this.updateToken}/></Route> */}
         </Switch>

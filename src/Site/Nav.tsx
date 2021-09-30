@@ -31,10 +31,8 @@ render() {
         
         <AppBar position="static" className="navbar">
            
-          <Toolbar sx={{
-            backgroundColor: "gray",
-            
-          }}> 
+          <Toolbar style={{
+            backgroundColor: "#8CBA80", display: "flex", justifyContent: "space-between" }}> 
         
           <Typography variant="h4">Welcome! </Typography>
           <IconButton edge="start" color="secondary" aria-label="menu">

@@ -5,7 +5,6 @@ import AdminUserCreate from './AdminUserCreate'
 
 type AcceptedProps = {
     token: string
-    updateToken: (newToken: string) => void
 }
 
 interface AdminHomeState {
@@ -51,13 +50,21 @@ fetchUsers = (): void => {
 
     componentDidMount = (): void => {
         this.fetchUsers()
-        console.log("ADMIN USER TABLE FETCHED")}
+       console.log("ADMIN USER TABLE FETCHED")}
+
+    // componentDidUpdate(prevProps: AcceptedProps, prevState: AdminHomeState) {
+    //     if (prevState.users !== this.state.users){
+    //         this.fetchUsers()
+    //     }
+    
+    //     console.log("Component Did Update")
+    // }
 
  
     render() {
         return (
             <div>
-            <div><AdminUserCreate updateToken={this.props.updateToken} ></AdminUserCreate></div>
+            <div><AdminUserCreate ></AdminUserCreate></div>
                 <div><AdminUserTable token={this.props.token} fetchUsers={this.fetchUsers} users={this.state.users} editUpdateUser={this.editUpdateUser} updateOn={this.updateOn}/></div>
                 <div>
                     {this.state.updateActive ? (

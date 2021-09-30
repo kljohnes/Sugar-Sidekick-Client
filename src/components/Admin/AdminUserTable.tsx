@@ -5,7 +5,7 @@ import {Button, TableRow, TableCell, Table, TableContainer, TableHead, TableBody
 type AcceptedProps = {
     token: string 
     users: Array<object>
-    fetchUsers: (e:any) => void
+    fetchUsers: () => void
     editUpdateUser: (user:User) => void
     updateOn: () => void
 }
@@ -25,8 +25,7 @@ class AdminUserTable extends Component<AcceptedProps, User> {
             role: ''
         }
     }
-    deleteUser= async (e: any, id: number) => {
-        e.preventDefault()
+    deleteUser= async (id: number) => {
         let token = localStorage.getItem('token')
         await fetch (`http://localhost:3000/auth/${id}`, {
           method: 'DELETE',
@@ -35,8 +34,8 @@ class AdminUserTable extends Component<AcceptedProps, User> {
             Authorization: `Bearer ${this.props.token}`,
         })
       })
-        console.log(e)
-        return this.props.fetchUsers(e)
+        
+        return this.props.fetchUsers()
       }
     
 
@@ -49,6 +48,7 @@ userMapper = () => {
                 <TableCell>{user.id}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.role}</TableCell>
+                <TableCell>{user.password}</TableCell>
                 <TableCell>
           <Button onClick={() => {
             this.props.editUpdateUser(user)
@@ -57,10 +57,10 @@ userMapper = () => {
           }}>Edit</Button>
         </TableCell>
         <TableCell>
-        <Button onClick={(e)=> {
-            this.deleteUser(e, user.id)
+        <Button onClick={()=> {
+            this.deleteUser(user.id)
             console.log("Delete button clicked")
-          }}>Delete</Button>
+        }}>Delete</Button>
         </TableCell>
             </TableRow>
         )
@@ -76,6 +76,7 @@ render() {
                         <TableCell>ID</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Role</TableCell>
+                        <TableCell>Password</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>{this.userMapper()}</TableBody>

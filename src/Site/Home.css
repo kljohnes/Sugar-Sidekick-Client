@@ -1,0 +1,10 @@
+.Home {
+    background-image: url("../assets/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    background-color:#4D5382;
+    margin-bottom: 10rem;
+    height: 100vh;
+    
+}

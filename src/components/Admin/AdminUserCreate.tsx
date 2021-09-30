@@ -21,11 +21,8 @@ interface Values {
 }
 
 type Props = {
-    updateToken: (newToken: string) => void;
-    
-    // sessionToken: string;
-};
 
+}
 type submitState = {
   registered: boolean
 };
@@ -53,7 +50,6 @@ class AdminUserCreate extends Component<Props, submitState> {
             ).then((data) => {
                 if(data.message === "User successfully registered."){
                 window.localStorage.setItem('token', data.sessionToken)
-                this.props.updateToken(data.sessionToken);
                 this.setState( { registered: true })
                 console.log("User Created!", data)
                 } else {
@@ -70,7 +66,6 @@ class AdminUserCreate extends Component<Props, submitState> {
     render() {
         return (
         <div>
-            {( this.state.registered === true ) ? <Redirect to= '/' /> : null}
             <Typography>Sign Up</Typography>
             <Formik
             initialValues={{email: '', password: ''}}
@@ -107,7 +102,6 @@ class AdminUserCreate extends Component<Props, submitState> {
                 </div>
 
                 <Button type="submit">Submit</Button>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>)}
 
 

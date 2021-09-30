@@ -3,8 +3,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat; */
     color: white;
-    background-color: gray;
-    margin-bottom: 10rem;
+    background-color:#4D5382;
+    /* margin-bottom: 10rem; */
     
 }
 
@@ -14,3 +14,12 @@ body{
     margin-right: 20%;
 }
 
+.homePhoto {
+    height: 50vh;
+    width: 40vw;
+}
+
+.app {
+    margin: 0;
+    padding: 0;
+}
