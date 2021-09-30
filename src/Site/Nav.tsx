@@ -29,10 +29,11 @@ render() {
 
     return (
         
-        <AppBar position="static" className="navbar">
+        <AppBar  position="static" className="navbar">
            
-          <Toolbar style={{
-            backgroundColor: "#8CBA80", display: "flex", justifyContent: "space-between" }}> 
+          <Toolbar className="toolbar" style={{
+            backgroundColor: "#8CBA80", display: "flex", justifyContent: "space-between", height: 
+            '4rem' }}> 
         
           <Typography variant="h4">Welcome! </Typography>
           <IconButton edge="start" color="secondary" aria-label="menu">
@@ -45,7 +46,7 @@ render() {
             <IconButton edge="start" color="secondary" aria-label="menu"> 
             <Link className="nav_links" to="/ScriptIndex">Prescriptions</Link></IconButton>
             <IconButton edge="start" color="secondary" aria-label="menu"> 
-            <Link className="nav_links" to="/Log"><BsFillPersonFill/></Link></IconButton>
+            <Link className="nav_links" to="/Profile"><BsFillPersonFill/></Link></IconButton>
             <Link className="nav_links" to="/CarbCount">Carb Count</Link>
             <Link className="nav_links" to="/AdminHome">Admin</Link>
             <Link className="nav_links" to= "/Contact">Formspree</Link>

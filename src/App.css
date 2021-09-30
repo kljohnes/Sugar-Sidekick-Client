@@ -23,3 +23,15 @@ body{
     margin: 0;
     padding: 0;
 }
+
+.navbar {
+    margin: 0!important;
+}
+
+.toolbar {
+    margin: 0!important;
+}
+
+a.nav_links{
+    text-decoration: none!important;
+}

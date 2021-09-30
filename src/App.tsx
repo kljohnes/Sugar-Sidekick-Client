@@ -10,6 +10,7 @@ import ScriptIndex from './components/Prescriptions/ScriptIndex'
 import AdminHome from './components/Admin/AdminHome'
 import Carbs from './components/CarbCount/Carbs'
 import Formspree from './components/formspree'
+import Profile from './components/Profile/Profile'
 
 
 type AppState = {
@@ -99,6 +100,7 @@ render() {
         <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
         <Route exact path = '/'><Home/></Route>
         {/* {this.protectedViews()} */}
+        <Route exact path='/Profile'><Profile token={this.state.token}/></Route>
         <Route exact path='/LogIndex'><LogIndex token={this.state.token}/></Route>
         <Route exact path='/ScriptIndex'><ScriptIndex token={this.state.token}/></Route>
         <Route exact path ='/Contact'><Formspree /></Route>
