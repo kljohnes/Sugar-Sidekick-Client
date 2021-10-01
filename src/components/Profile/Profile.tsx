@@ -28,7 +28,7 @@ class ProfileCreate extends Component<ProfileProps, ProfileState> {
         let token = localStorage.getItem('token')
         e.preventDefault();
     
-        fetch( `http://${APIURL}/profile/`, {
+        fetch( `${APIURL}/profile/`, {
             method: 'POST',
             body: JSON.stringify({
                 profile:{

@@ -28,7 +28,7 @@ class ScriptIndex extends Component <AcceptedProps, ScriptIndexState>{
 
     fetchScripts = (): void => {
         let token = localStorage.getItem('token')
-          fetch(`http://${APIURL}/script/mine`, {
+          fetch(`${APIURL}/script/mine`, {
           
             method: "GET",
             headers: new Headers({

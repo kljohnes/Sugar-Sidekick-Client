@@ -28,7 +28,7 @@ class AdminUserTable extends Component<AcceptedProps, User> {
     }
     deleteUser= async (id: number) => {
         let token = localStorage.getItem('token')
-        await fetch (`http://${APIURL}/auth/${id}`, {
+        await fetch (`${APIURL}/auth/${id}`, {
           method: 'DELETE',
           headers: new Headers ({
             'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ class UserEdit extends Component<UserEditProps, UserEditState> {
 
 userUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`http://${APIURL}/auth/${this.props.userToUpdate.id}`, {
+    fetch(`${APIURL}/auth/${this.props.userToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             user: {

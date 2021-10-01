@@ -60,7 +60,7 @@ class LogTable extends Component<AcceptedProps, Log> {
   deleteLog = async (e: any, id: number) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    await fetch (`http://${APIURL}/log/delete/${id}`, {
+    await fetch (`${APIURL}/log/delete/${id}`, {
       method: 'DELETE',
       headers: new Headers ({
         'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ class ScriptTable extends Component<AcceptedProps, Script> {
   deleteScript = async (e: any, id: number) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    await fetch (`http://${APIURL}/script/delete/${id}`, {
+    await fetch (`${APIURL}/script/delete/${id}`, {
       method: 'DELETE',
       headers: new Headers ({
         'Content-Type': 'application/json',

@@ -42,7 +42,7 @@ class LogEdit extends Component<LogEditProps, LogEditState> {
 
 logUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`http://${APIURL}/log/update/${this.props.logToUpdate.id}`, {
+    fetch(`${APIURL}/log/update/${this.props.logToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             log: {

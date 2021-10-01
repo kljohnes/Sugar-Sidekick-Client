@@ -29,7 +29,7 @@ class LogIndex extends Component <AcceptedProps, LogIndexState>{
     fetchLogs = (): void => {
         let token = localStorage.getItem('token')
         console.log("Are we fetching now????");
-          fetch(`http://${APIURL}/log/mine`, {
+          fetch(`${APIURL}/log/mine`, {
           
             method: "GET",
             headers: new Headers({

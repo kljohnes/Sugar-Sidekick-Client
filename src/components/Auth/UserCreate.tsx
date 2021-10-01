@@ -43,7 +43,7 @@ class UserCreate extends Component<Props, submitState> {
 
     handleSubmit(values: Values, props: Props) {
     
-        fetch(`http://${APIURL}/auth/register`, {
+        fetch(`${APIURL}/auth/register`, {
             method: 'POST',
             body: JSON.stringify({user:{email: values.email, password: values.password, role: "user"}}),
             headers: new Headers({

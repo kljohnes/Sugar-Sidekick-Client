@@ -42,7 +42,7 @@ class UserLogin extends Component<Props, submitState> {
 
     handleSubmit(values: Values, props: Props) {
     
-        fetch(`http://${APIURL}/auth/login`, {
+        fetch(`${APIURL}/auth/login`, {
             method: 'POST',
             body: JSON.stringify({user:{email: values.email, password: values.password, role: "user"}}),
             headers: new Headers({

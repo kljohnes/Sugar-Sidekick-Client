@@ -33,7 +33,7 @@ class ScriptEdit extends Component<ScriptEditProps, ScriptEditState> {
 
 scriptUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`http://{${APIURL}/script/update/${this.props.scriptToUpdate.id}`, {
+    fetch(`{${APIURL}/script/update/${this.props.scriptToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             script: {

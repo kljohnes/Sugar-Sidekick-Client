@@ -29,7 +29,7 @@ class ScriptCreate extends Component<ScriptProps, ScriptState> {
         let token = localStorage.getItem('token')
         e.preventDefault();
     
-        fetch(`http://${APIURL}/script/create`, {
+        fetch(`${APIURL}/script/create`, {
             method: 'POST',
             body: JSON.stringify({
                 script:{
