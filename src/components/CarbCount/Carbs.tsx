@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {TextField, Typography, Card, Button, Grid} from "@material-ui/core"
+require ("dotenv").config()
 
 
 type AcceptedProps = {
@@ -54,7 +55,7 @@ export default class Carbs extends Component<AcceptedProps, CarbState> {
     }
 
 fetchCarbCount = (event:any) => {
-    fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm}`)
+ fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm}`)
     .then (res => res.json())
     .then (json => {
         console.log(json)

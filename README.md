@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+# SUGAR SIDEKICK CLIENT
+
+### Sugar Sidekick is an app designed to make the management of diabetes just a little bit easier. Users can log various events, such as blood glucose readings, carbs consumed, and insulin doses. In addition, they can keep track of their prescriptions for medications and devices. Both of these features utilize full CRUD capabilities.
+
+### This app also features a carb calculator powered by the Edaman API. Users can input up to 6 different foods at a time and calculate the total carb count.
+
+### This app features role-based access control. At this point, only an Admin can register users. This is due to the nature of the app (medical data), and the fact that it is still in development. Access is restricted for security reasons. Users can currently access the contact form and request registration.
+
+### The app utilizes Material UI and Reactstrap for styling.
+
+
+## Version 2 Features: 
+1. The ability to sort the log table by date and other paramaters
+2. the ability to get carbs counts for entire recipes. 
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
