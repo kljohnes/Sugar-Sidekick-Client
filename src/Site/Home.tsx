@@ -17,15 +17,12 @@ class Home extends Component<AcceptedProps> {
 
 render() {
     return (
-        <Container maxWidth="lg">
-              <Typography variant='h1'>Welcome To Sugar Sidekick</Typography>
-             <ul>
-                <li>Log</li>
-                <li>Prescription info</li>
-                <li>Carb counts</li>
-                    </ul>
-          <img src={background} className="homeImg"/>
-        </Container>
+        <div className="Home">
+            <div className="homeText">
+              <h1>Welcome To Sugar Sidekick</h1>
+          </div>
+          {/* <img src={background} className="homeImg"/> */}
+        </div>
        
     )
 }

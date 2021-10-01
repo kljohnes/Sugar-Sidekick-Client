@@ -1,18 +1,26 @@
 .Home {
-    /* background-image: url("../assets/background.jpg");
-    background-size: cover; */
+    background-image: url("../assets/background.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
     color: white;
     background-color:#4D5382;
     margin: 0;
-    /* height: 120vh; */
+    height: 100vh;
+    position: relative;
+    background-position: center;
+    padding-bottom: 100px;
    
     
 }
 
-.homeImg {
+.homeText {
     position: absolute;
-    max-width: 600px;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Ephesis', cursive;
+    font-size: 50px;
     
    
 }

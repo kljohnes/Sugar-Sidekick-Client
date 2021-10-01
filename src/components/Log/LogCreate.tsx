@@ -39,7 +39,7 @@ class LogCreate extends Component<LogProps, LogState> {
         let token = localStorage.getItem('token')
         e.preventDefault();
     
-        fetch(`http://${APIURL}/log/create`, {
+        fetch(`${APIURL}/log/create`, {
             method: 'POST',
             body: JSON.stringify({
                 log:{
