@@ -3,6 +3,7 @@ import {  Typography, TextField, Button } from "@material-ui/core";
 import { Redirect } from "react-router-dom"
 import { Form, Formik } from "formik"
 import * as Yup from 'yup'
+import APIURL from '../../helpers/environment'
 
 
 const Schema = Yup.object({
@@ -39,7 +40,7 @@ class AdminUserCreate extends Component<Props, submitState> {
 
     handleSubmit(values: Values, props: Props) {
     
-        fetch("http://localhost:3000/auth/register", {
+        fetch(`http://${APIURL}/auth/register`, {
             method: 'POST',
             body: JSON.stringify({user:{email: values.email, password: values.password, role: "user"}}),
             headers: new Headers({

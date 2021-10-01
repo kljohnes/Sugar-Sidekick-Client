@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AdminUserTable from './AdminUserTable'
 import UserEdit from './AdminUserEdit'
 import AdminUserCreate from './AdminUserCreate'
+import APIURL from '../../helpers/environment'
 
 type AcceptedProps = {
     token: string
@@ -22,7 +23,7 @@ class AdminHome extends Component<AcceptedProps, AdminHomeState> {
         }
     }
 fetchUsers = (): void => {
-    fetch ("http://localhost:3000/auth/all", {
+    fetch (`${APIURL}/auth/all`, {
         method: "GET",
         headers: ({
             "Content-Type": "application/json",

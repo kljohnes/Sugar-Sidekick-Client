@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { TextField, Button } from "@material-ui/core"
+import APIURL from '../../helpers/environment'
+
 
 type ProfileProps = {
     // fetchProfile: () => void
@@ -26,7 +28,7 @@ class ProfileCreate extends Component<ProfileProps, ProfileState> {
         let token = localStorage.getItem('token')
         e.preventDefault();
     
-        fetch("http://localhost:3000/profile/", {
+        fetch( `http://${APIURL}/profile/`, {
             method: 'POST',
             body: JSON.stringify({
                 profile:{

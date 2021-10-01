@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button,TextField, Radio, RadioGroup, FormControl, FormLabel } from "@material-ui/core"
 import { Modal, ModalHeader , ModalBody, ModalFooter } from 'reactstrap'
 import { FormControlLabel } from '@mui/material'
+import APIURL from '../../helpers/environment'
 
 
 type UserEditProps = {
@@ -31,7 +32,7 @@ class UserEdit extends Component<UserEditProps, UserEditState> {
 
 userUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`http://localhost:3000/auth/${this.props.userToUpdate.id}`, {
+    fetch(`http://${APIURL}/auth/${this.props.userToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             user: {

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ScriptCreate from './ScriptCreate';
 import ScriptTable from './ScriptTable';
 import ScriptEdit from './ScriptEdit';
+import APIURL from '../../helpers/environment'
+
 
 type AcceptedProps = {
     token: string 
@@ -26,7 +28,7 @@ class ScriptIndex extends Component <AcceptedProps, ScriptIndexState>{
 
     fetchScripts = (): void => {
         let token = localStorage.getItem('token')
-          fetch("http://localhost:3000/script/mine", {
+          fetch(`http://${APIURL}/script/mine`, {
           
             method: "GET",
             headers: new Headers({

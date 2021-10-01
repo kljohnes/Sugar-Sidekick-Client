@@ -1,6 +1,7 @@
 import  React, { Component } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableSortLabel } from "@material-ui/core"
+import APIURL from '../../helpers/environment'
 
 // const columns = [
 //   { field: 'id', headerName: 'ID', width: 70 },
@@ -59,7 +60,7 @@ class LogTable extends Component<AcceptedProps, Log> {
   deleteLog = async (e: any, id: number) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    await fetch (`http://localhost:3000/log/delete/${id}`, {
+    await fetch (`http://${APIURL}/log/delete/${id}`, {
       method: 'DELETE',
       headers: new Headers ({
         'Content-Type': 'application/json',

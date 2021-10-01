@@ -3,6 +3,7 @@ import { TextField, Typography, Button } from "@material-ui/core";
 import { Form, Formik, validateYupSchema } from "formik"
 import * as Yup from 'yup'
 import { Redirect } from 'react-router-dom'
+import APIURL from '../../helpers/environment'
 
 
 const Schema = Yup.object({
@@ -41,7 +42,7 @@ class UserLogin extends Component<Props, submitState> {
 
     handleSubmit(values: Values, props: Props) {
     
-        fetch("http://localhost:3000/auth/login", {
+        fetch(`http://${APIURL}/auth/login`, {
             method: 'POST',
             body: JSON.stringify({user:{email: values.email, password: values.password, role: "user"}}),
             headers: new Headers({

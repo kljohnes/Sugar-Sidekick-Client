@@ -1,6 +1,7 @@
 import  React, { Component } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@material-ui/core"
+import APIURL from '../../helpers/environment'
 
 type AcceptedProps = {
   token:string 
@@ -31,7 +32,7 @@ class ScriptTable extends Component<AcceptedProps, Script> {
   deleteScript = async (e: any, id: number) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    await fetch (`http://localhost:3000/script/delete/${id}`, {
+    await fetch (`http://${APIURL}/script/delete/${id}`, {
       method: 'DELETE',
       headers: new Headers ({
         'Content-Type': 'application/json',

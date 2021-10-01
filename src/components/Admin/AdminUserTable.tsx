@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Button, TableRow, TableCell, Table, TableContainer, TableHead, TableBody} from "@material-ui/core"
+import APIURL from '../../helpers/environment'
 
 
 type AcceptedProps = {
@@ -27,7 +28,7 @@ class AdminUserTable extends Component<AcceptedProps, User> {
     }
     deleteUser= async (id: number) => {
         let token = localStorage.getItem('token')
-        await fetch (`http://localhost:3000/auth/${id}`, {
+        await fetch (`http://${APIURL}/auth/${id}`, {
           method: 'DELETE',
           headers: new Headers ({
             'Content-Type': 'application/json',

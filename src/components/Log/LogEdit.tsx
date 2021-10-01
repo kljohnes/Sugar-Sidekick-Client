@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Button, FormGroup, TextField, Dialog } from "@material-ui/core"
 import { Log } from './LogTable'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import APIURL from '../../helpers/environment'
+
+
 type LogEditProps = {
     logToUpdate: { [key: string]: any}
     updateOff: () => void
@@ -39,7 +42,7 @@ class LogEdit extends Component<LogEditProps, LogEditState> {
 
 logUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`http://localhost:3000/log/update/${this.props.logToUpdate.id}`, {
+    fetch(`http://${APIURL}/log/update/${this.props.logToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             log: {

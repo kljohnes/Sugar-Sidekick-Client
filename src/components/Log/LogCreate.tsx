@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { TextField, Button, FormGroup } from '@material-ui/core'
+import APIURL from '../../helpers/environment'
+
 
 type LogProps = {
     fetchLogs: () => void
@@ -37,7 +39,7 @@ class LogCreate extends Component<LogProps, LogState> {
         let token = localStorage.getItem('token')
         e.preventDefault();
     
-        fetch("http://localhost:3000/log/create", {
+        fetch(`http://${APIURL}/log/create`, {
             method: 'POST',
             body: JSON.stringify({
                 log:{

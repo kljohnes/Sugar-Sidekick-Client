@@ -3,6 +3,7 @@ import LogCreate from './LogCreate';
 import LogTable from './LogTable';
 import { Log } from './LogTable';
 import LogEdit from './LogEdit';
+import APIURL from '../../helpers/environment'
 
 type AcceptedProps = {
     token: string 
@@ -28,7 +29,7 @@ class LogIndex extends Component <AcceptedProps, LogIndexState>{
     fetchLogs = (): void => {
         let token = localStorage.getItem('token')
         console.log("Are we fetching now????");
-          fetch("http://localhost:3000/log/mine", {
+          fetch(`http://${APIURL}/log/mine`, {
           
             method: "GET",
             headers: new Headers({

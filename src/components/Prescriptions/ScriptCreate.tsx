@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { TextField, Button, FormGroup } from '@material-ui/core'
+import APIURL from '../../helpers/environment'
 
 type ScriptProps = {
     fetchScripts: () => void
@@ -28,7 +29,7 @@ class ScriptCreate extends Component<ScriptProps, ScriptState> {
         let token = localStorage.getItem('token')
         e.preventDefault();
     
-        fetch("http://localhost:3000/script/create", {
+        fetch(`http://${APIURL}/script/create`, {
             method: 'POST',
             body: JSON.stringify({
                 script:{

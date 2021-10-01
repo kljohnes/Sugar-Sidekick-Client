@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, FormGroup, TextField, Dialog } from "@material-ui/core"
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import APIURL from '../../helpers/environment'
 
 
 type ScriptEditProps = {
@@ -32,7 +33,7 @@ class ScriptEdit extends Component<ScriptEditProps, ScriptEditState> {
 
 scriptUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`http://localhost:3000/script/update/${this.props.scriptToUpdate.id}`, {
+    fetch(`http://{${APIURL}/script/update/${this.props.scriptToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             script: {
