@@ -64,13 +64,13 @@ class App extends Component< {}, AppState>{
   //   localStorage.setItem("role", "user")
   // }
 } 
-protectedViews = () => {
-    return this.state.token === localStorage.getItem("token") ? (
-    <Home token={this.state.token}/> ): ( 
-    <Auth 
-      updateToken={this.updateToken}
-      updateRole={this.updateRole}/>
-    )}
+// protectedViews = () => {
+//     return this.state.token === localStorage.getItem("token") ? (
+//     <Home token={this.state.token}/> ): ( 
+//     <Auth 
+//       updateToken={this.updateToken}
+//       updateRole={this.updateRole}/>
+//     )}
     
 profileView = () => {
       return this.state.token === localStorage.getItem("token") ? (
@@ -122,7 +122,7 @@ render() {
           updateRole={this.updateRole}
           />
       <Switch>
-        <Route exact path = '/'>{this.protectedViews}</Route>
+        <Route exact path = '/'><Home token={this.state.token}/></Route>
         <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
         <Route exact path='/CarbCount'><Carbs/></Route>
         <Route exact path='/About'><About/></Route>

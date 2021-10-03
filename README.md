@@ -1,5 +1,8 @@
 # SUGAR SIDEKICK CLIENT
 
+## DEPLOYED URL: https://sugar-sidekick-client.herokuapp.com/
+
+
 ### Sugar Sidekick is an app designed to make the management of diabetes just a little bit easier. Users can log various events, such as blood glucose readings, carbs consumed, and insulin doses. In addition, they can keep track of their prescriptions for medications and devices. Both of these features utilize full CRUD capabilities.
 
 ### This app also features a carb calculator powered by the Edaman API. Users can input up to 6 different foods at a time and calculate the total carb count.

@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom"
 import { Form, Formik } from "formik"
 import * as Yup from 'yup'
 import APIURL from '../../helpers/environment'
+import "./Admin.css"
 
 
 const Schema = Yup.object({
@@ -22,6 +23,7 @@ interface Values {
 }
 
 type Props = {
+    fetchUsers: () => void
 
 }
 type submitState = {
@@ -61,13 +63,14 @@ class AdminUserCreate extends Component<Props, submitState> {
 
             })
             .catch((err) => console.log(err))
+            this.props.fetchUsers()
     } 
 
 
     render() {
         return (
-        <div>
-            <Typography>Sign Up</Typography>
+        <div className = "createUser">
+            <Typography>Create A New User</Typography>
             <Formik
             initialValues={{email: '', password: ''}}
             validationSchema={Schema}
@@ -102,7 +105,7 @@ class AdminUserCreate extends Component<Props, submitState> {
                 ) : null }
                 </div>
 
-                <Button type="submit">Submit</Button>
+                <Button className="button" id="adminButton" type="submit">Submit</Button>
             </Form>)}
 
 

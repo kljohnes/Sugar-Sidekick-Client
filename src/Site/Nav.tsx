@@ -9,8 +9,9 @@ import '../App.css';
 import { Link } from "react-router-dom"
 import {BsPencilSquare, BsFillHouseDoorFill, BsFillPersonFill} from 'react-icons/bs'
 import {FaFilePrescription} from 'react-icons/fa'
-import {BiCalculator} from 'react-icons/bi'
-import { Redirect } from 'react-router-dom'
+import {BiCalculator, BiHelpCircle, BiLock } from 'react-icons/bi'
+
+
 
 type AcceptedProps = {
   clearToken: () => void;
@@ -53,10 +54,9 @@ render() {
             <Tooltip title="Prescriptions"><IconButton edge="start" color="secondary" aria-label="menu"> 
             <Link className="nav_links" to="/ScriptIndex"><FaFilePrescription/></Link></IconButton></Tooltip>
             <Tooltip title="Carb Calculator"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/CarbCount"><BiCalculator/></Link></IconButton></Tooltip>
-
-            <Link className="nav_links" to="/AdminHome">Admin</Link>
-            <Link className="nav_links" to= "/Contact">Formspree</Link>
-            <Button color="secondary" onClick={this.props.clearToken} ><Typography color="warning">Log Out</Typography></Button>
+            <Tooltip title="Admin"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/AdminHome"><BiLock/></Link></IconButton></Tooltip>
+            <Tooltip title="Contact"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/Contact"><BiHelpCircle/></Link></IconButton></Tooltip>
+            <Button color="primary" onClick={this.props.clearToken} ><Typography>Log Out</Typography></Button>
            
             </Toolbar>
             </AppBar>

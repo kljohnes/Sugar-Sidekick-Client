@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Button, TableRow, TableCell, Table, TableContainer, TableHead, TableBody} from "@material-ui/core"
+import {Button, TableRow, TableCell, Table, TableContainer, TableHead, TableBody, Typography} from "@material-ui/core"
 import APIURL from '../../helpers/environment'
 
 
@@ -51,14 +51,14 @@ userMapper = () => {
                 <TableCell>{user.role}</TableCell>
                 <TableCell>{user.password}</TableCell>
                 <TableCell>
-          <Button onClick={() => {
+          <Button className="button" onClick={() => {
             this.props.editUpdateUser(user)
             this.props.updateOn()
             console.log("update button clicked")
           }}>Edit</Button>
         </TableCell>
         <TableCell>
-        <Button onClick={()=> {
+        <Button className= "button" onClick={()=> {
             this.deleteUser(user.id)
             console.log("Delete button clicked")
         }}>Delete</Button>
@@ -71,6 +71,7 @@ userMapper = () => {
 render() {
     return (
         <TableContainer>
+            <Typography variant="h4"> User List </Typography>
             <Table>
                 <TableHead>
                     <TableRow>

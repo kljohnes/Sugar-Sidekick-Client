@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { TextField, Button, FormGroup, MenuItem, ListItem } from '@material-ui/core'
 import APIURL from '../../helpers/environment'
+import "./Script.css"
 
 type ScriptProps = {
     fetchScripts: () => void
@@ -109,7 +110,7 @@ class ScriptCreate extends Component<ScriptProps, ScriptState> {
                                 name="notes"
                                 onChange={this.handleChangeNotes}/>
                         </div>
-                        <Button type="submit">SUBMIT</Button>
+                        <Button id="scriptButton" className="button" type="submit">SUBMIT</Button>
              
                 </form>
             </div>

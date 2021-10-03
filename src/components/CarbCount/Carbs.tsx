@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {TextField, Typography, Card, Button, Grid} from "@material-ui/core"
-require ("dotenv").config()
+import "./Carbs.css"
 
 
 type AcceptedProps = {
@@ -131,7 +130,7 @@ fetchCarbCount5 = (event:any) => {
     .catch((error) => console.log(error))
 }
 
-fetchCarbCount6 = (event:any) => {
+fetchCarbCount6 = (event: any) => {
     fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm6}`)
     .then (res => res.json())
     .then (json => {
@@ -171,13 +170,13 @@ handleAddition = (e: any) => { this.setState({
     total: this.state.carbs + this.state.carbs2 + this.state.carbs3 + this.state.carbs4 + this.state.carbs5 + this.state.carbs6
 })}
 
-carbDisplay = (e: any) => {
-    return (
-    <div id="carb data">
-        <p>{this.state.carbs}</p>
-    </div>
-    )
-}
+// carbDisplay = (e: any) => {
+//     return (
+//     <div id="carb data">
+//         <p>{this.state.carbs}</p>
+//     </div>
+//     )
+// }
 
 
 
@@ -185,10 +184,9 @@ carbDisplay = (e: any) => {
         return (
             
                 <div id="carbs">
-                <Typography><h1>Carb Search</h1>
+                <Typography><h1>Carb Calculator</h1>
                 <h5>Enter a food and a quantity to return the nutrition data.
-                    Example: "1 cup strawberries" or "100 grams rice"
-                </h5>
+                    Example: "1 cup strawberries" or "100 grams rice". Then, click the plus sign to get carbs for that entry. Use the button at the bottom to get the total!</h5>
                 </Typography>
                 <div id="carbTextfields">
                 <div>
@@ -259,10 +257,11 @@ carbDisplay = (e: any) => {
                     <p>{this.state.carbs4}</p>
                     <p>{this.state.carbs5}</p>
                     <p>{this.state.carbs6}</p>
-                    <h1>{this.state.total}</h1>
+                    <hr/>
+                    <h1>{this.state.total.toFixed(2)}</h1>
                 </div>
 
-                <Button onClick ={(e) => {
+                <Button className="button" onClick ={(e) => {
                     this.handleAddition(e)
                     }}>Get Total</Button>
                </div>

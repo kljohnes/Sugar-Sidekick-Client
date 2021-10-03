@@ -44,8 +44,67 @@ a.nav_links{
 .button {
     background-color: white!important;
     color: #514663!important;
+
 }
 
 .button:hover{
     background-color: gray!important;
+}
+
+.login{
+    display: grid;
+    justify-content: center;
+    margin-top: 5%;
+    text-align: center;
+ 
+}
+
+.loginForm{
+    border: 1px solid white;
+    border-radius: 5px;
+    display: grid;
+    justify-content: center;
+    padding: 50px;
+}
+
+.password {
+    margin-bottom: 10px;
+}
+
+.contact {
+    display: grid;
+    justify-content: center;
+    margin-top: 5%;
+    text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+   
+
+}
+
+.label {
+    display: grid;
+    width: 50vw;
+    height: 10vh;
+    margin: 10px;
+
+}
+
+#message {
+    height: 20vh;
+}
+
+.formspree {
+    text-align: center;
+    font-size: 50px;
+}
+
+.formButton {
+    height: 40px;
+    border-radius: 5px;
+
+}
+.formButton:hover {
+    background-color: gray;
 }

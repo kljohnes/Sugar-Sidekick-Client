@@ -75,7 +75,7 @@ render() {
         <div>
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>
-                Update a log entry.
+                Update a user.
             </ModalHeader>
             <ModalBody>
             <div>
@@ -107,7 +107,7 @@ render() {
                 </div>
     </ModalBody>
     <ModalFooter>
-        <Button onClick={() => {
+        <Button className="button" onClick={() => {
             this.userUpdate() 
             this.toggleModal()}}
             >Update</Button>

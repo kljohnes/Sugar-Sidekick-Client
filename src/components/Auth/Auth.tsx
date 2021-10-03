@@ -36,7 +36,7 @@ class Auth extends Component<AcceptedProps, AuthState>{
 
 render() {
     return (
-        <div>
+        <div className = "login">
             {this.state.loginForm ? (
                 <div>
                     <UserCreate updateToken={this.props.updateToken}/>
@@ -49,9 +49,9 @@ render() {
                 updateToken={this.props.updateToken} updateRole={this.props.updateRole}/>
                 </div>
         )}
-
-        <Button onClick ={(event) => {this.toggler(event)}}> {this.state.loginForm ? "Have an account? Log In." : "No account? Sign up."}</Button>
-        
+{/* Originally this button would toggle between login and signup. Removed this ability and instead including a button to contact admin for an account. */}
+        {/* <Button className="signUp" onClick ={(event) => {this.toggler(event)}}> {this.state.loginForm ? "Have an account? Log In." : "No account? Sign Up."}</Button> */}
+        {<Button className="signup" href="/Contact">No account? Request access.</Button>}
 </div>
     )
 }

@@ -65,16 +65,18 @@ class UserLogin extends Component<Props, submitState> {
     } 
  render() {
         return (
-        <div>
+        <div className="login">
         {( this.state.loggedIn === true && this.state.role === "admin" ) ? <Redirect to= '/AdminHome' /> : null}
-        <Typography>Log In</Typography>
+        <Typography variant="h4">Please Log In</Typography>
             <Formik
             initialValues={{email: '', password: ''}}
             validationSchema={Schema}
             onSubmit={(values)=> {
                 this.handleSubmit(values, this.props)}}>
             {({ values, handleChange, handleBlur, errors, touched  }) => (
-            <Form>
+          
+                <Form >
+                <div className="loginForm">
                 <div>
                     <TextField
                     name="email"
@@ -88,7 +90,7 @@ class UserLogin extends Component<Props, submitState> {
                     <div>{errors.email}</div>
                 ) : null }
                 </div> 
-                <div>
+                <div className="password">
                     <TextField
                     name="password"
                     label="Password"
@@ -102,8 +104,10 @@ class UserLogin extends Component<Props, submitState> {
                 ) : null }
                 </div>
 
-                <Button type="submit">Submit</Button>
+                <Button className="button" type="submit">Submit</Button>
+            </div>
             </Form>)}
+            
 
 
 </Formik>

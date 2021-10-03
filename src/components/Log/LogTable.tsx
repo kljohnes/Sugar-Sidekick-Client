@@ -1,6 +1,7 @@
 import  React, { Component } from 'react'
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableSortLabel } from "@material-ui/core"
 import APIURL from '../../helpers/environment'
+import "./Log.css"
 
 type AcceptedProps = {
   token:string 
@@ -83,14 +84,14 @@ logMapper = () => {
         {log.notes}
         </TableCell>
         <TableCell>
-          <Button onClick={() => {
+          <Button className="button" onClick={() => {
             this.props.editUpdateLog(log)
             this.props.updateOn()
             console.log("update button clicked")
           }}>Edit</Button>
         </TableCell>
         <TableCell>
-          <Button onClick={(e)=> {
+          <Button className="button" onClick={(e)=> {
             this.deleteLog(e, log.id)
             console.log("Delete button clicked")
           }}>Delete</Button>
@@ -102,11 +103,11 @@ render (){
   return (
     // console.log("ARE WE WORKING?????????")
     <div>
-      <h1>Log Entries</h1>
+      <h1 id="Log">My Log Entries</h1>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
-          <TableHead>
-            <TableRow >
+          <TableHead >
+            <TableRow  >
               <TableCell>id</TableCell>
               <TableCell>Date
                 <TableSortLabel active={"date"==="date"}>
@@ -121,7 +122,7 @@ render (){
               <TableCell>Notes</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{this.logMapper()}</TableBody>
+          <TableBody style={{backgroundColor: "#CACF85"}}>{this.logMapper()}</TableBody>
 
         </Table>
       </TableContainer>

@@ -81,7 +81,7 @@ render() {
         <div>
         <Dialog className="modal" open={this.state.modal} onClose={this.handleClose}>
             <DialogTitle >
-                Update a log entry.
+                Update a prescription.
             </DialogTitle>
             <DialogContent>
             <div>
@@ -116,60 +116,16 @@ render() {
 
     </DialogContent>
     <DialogActions>
-        <Button onClick={() => {
+        <Button className="button" onClick={() => {
             this.scriptUpdate() 
             this.handleClose()}}
             >Update</Button>
-            <Button onClick={this.handleClose}>Cancel</Button>
+            <Button className="button" onClick={this.handleClose}>Cancel</Button>
     {/* <Button onClick={this.deleteLog}>Delete</Button> */}
     </DialogActions>
     </Dialog>
     </div>
-    //     <div>
-    //     <Modal className="modal" isOpen={this.state.modal} toggle={this.toggleModal}>
-    //         <ModalHeader toggle={this.toggleModal}>
-    //             Update a log entry.
-    //         </ModalHeader>
-    //         <ModalBody>
-    //         <div>
-    //                 <TextField
-    //                     label="Name"
-    //                     type="text"
-    //                     name="name"
-    //                     onChange={this.handleChangeName} />
-    //             </div>
-    //             <div>
-    //                 <TextField
-    //                     label="Category"
-    //                     type="text"
-    //                     name="category"
-    //                     onChange={this.handleChangeCategory}/>
-    //             </div>
-    //             <div>
-    //                 <p>Expiration</p>
-    //                 <TextField
-    //                     type="date"
-    //                     name="expiration"
-    //                     onChange={this.handleChangeExp}/>
-    //             </div>
-    //             <div>
-    //                 <TextField
-    //                     label="Notes"
-    //                     multiline
-    //                     type="text"
-    //                     name="notes"
-    //                     onChange={this.handleChangeNotes}/>
-    //             </div>
 
-    // </ModalBody>
-    // <ModalFooter>
-    //     <Button onClick={() => {
-    //         this.scriptUpdate() 
-    //         this.toggleModal()}}
-    //         >Update</Button>
-    // {/* <Button onClick={this.deleteLog}>Delete</Button> */}
-    // </ModalFooter>
-    // </Modal>
     
 
     )

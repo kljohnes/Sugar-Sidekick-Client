@@ -2,10 +2,8 @@ import  React, { Component } from 'react';
 import Auth from '../components/Auth/Auth'
 import Button from '@mui/material/Button';
 import './Home.css';
-import background from '../assets/background.jpg'
-import { Grid, Typography, Container} from '@material-ui/core'
 import APIURL from '../helpers/environment'
-
+import "../App.css"
 
 type AcceptedProps = {
     token: string
@@ -52,7 +50,8 @@ render() {
               <h1>Welcome To Sugar Sidekick</h1>
               </div>
               <div>
-              <Button className="button" href="/About">About</Button>
+              <Button className="button" id="button1" href="/About">About</Button>
+              <Button className="button" id="button2" href="/Auth">Log In</Button>
               </div>
            </div>
     )

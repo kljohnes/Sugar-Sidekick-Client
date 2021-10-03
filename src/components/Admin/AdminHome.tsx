@@ -3,6 +3,7 @@ import AdminUserTable from './AdminUserTable'
 import UserEdit from './AdminUserEdit'
 import AdminUserCreate from './AdminUserCreate'
 import APIURL from '../../helpers/environment'
+import "./Admin.css"
 
 type AcceptedProps = {
     token: string
@@ -53,19 +54,25 @@ fetchUsers = (): void => {
         this.fetchUsers()
        console.log("ADMIN USER TABLE FETCHED")}
 
-    // componentDidUpdate(prevProps: AcceptedProps, prevState: AdminHomeState) {
-    //     if (prevState.users !== this.state.users){
-    //         this.fetchUsers()
-    //     }
+    componentDidUpdate(prevProps: AcceptedProps, prevState: AdminHomeState) {
+        if (prevState.users.length !== this.state.users.length){
+            this.fetchUsers()
+        }
     
-    //     console.log("Component Did Update")
-    // }
+        console.log("Component Did Update")
+    }
 
  
     render() {
         return (
-            <div>
-            <div><AdminUserCreate ></AdminUserCreate></div>
+            <div className="admin">
+                     <h1>Welcome to the Admin Home Page </h1>
+                <ul>
+                    <li>Get a list of all users</li>
+                    <li>Create users</li>
+                    <li>Edit and delete users</li>
+                </ul>
+            <div><AdminUserCreate fetchUsers={this.fetchUsers}></AdminUserCreate></div>
                 <div><AdminUserTable token={this.props.token} fetchUsers={this.fetchUsers} users={this.state.users} editUpdateUser={this.editUpdateUser} updateOn={this.updateOn}/></div>
                 <div>
                     {this.state.updateActive ? (
@@ -79,12 +86,7 @@ fetchUsers = (): void => {
             
 
         
-                <h1>Welcome to the Admin Home Page </h1>
-                <ul>
-                    <li>Get a list of all users</li>
-                    <li>Create users</li>
-                    <li>Edit and delete users</li>
-                </ul>
+           
             </div>
         )
     }

@@ -20,5 +20,10 @@
 .scriptCreate {
     display: grid;
     justify-content: center;
+
  
+}
+
+#scriptButton {
+    margin-top: 10px;
 }
