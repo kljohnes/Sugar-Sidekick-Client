@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextField, Button, FormGroup } from '@material-ui/core'
+import { TextField, Button, FormGroup, MenuItem, ListItem } from '@material-ui/core'
 import APIURL from '../../helpers/environment'
 
 type ScriptProps = {
@@ -74,9 +74,9 @@ class ScriptCreate extends Component<ScriptProps, ScriptState> {
 
     render() {
         return (
-            <div>
+            <div className="scriptCreate">
                 <h1>Create a New Prescription</h1>
-                <form onSubmit={this.scriptCreate} >
+                <form  className="scriptForm" onSubmit={this.scriptCreate} >
                
                         <div>
                             <TextField
@@ -90,8 +90,10 @@ class ScriptCreate extends Component<ScriptProps, ScriptState> {
                                 label="category"
                                 type="text"
                                 name="category"
-                                onChange={this.handleChangeCategory}/>
+                                onChange={this.handleChangeCategory}>  
+                            </TextField>
                         </div>
+
                         <div>
                             <p>Expiration date</p>
                             <TextField

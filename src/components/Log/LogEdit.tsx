@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Button, FormGroup, TextField, Dialog } from "@material-ui/core"
-import { Log } from './LogTable'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import APIURL from '../../helpers/environment'
+import "./Log.css"
 
 
 type LogEditProps = {
@@ -68,24 +68,6 @@ logUpdate = () => {
     })
 }
 
-// deleteLog = () => {
-//     let token = localStorage.getItem('token')
-//     fetch (`http://localhost:3000/log/delete/${this.props.logToUpdate.id}`, {
-//       method: "DELETE",
-//       headers: new Headers ({
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${this.props.token}`,
-//     })
-//   })
-//     .then((response) =>
-//     console.log(response))
-//     this.props.updateOff()
-//     this.props.fetchLogs()
-//   }
-
-
-
-
 handleChangeDate = (e: any ) => { this.setState({
     date: e.target.value
 })}
@@ -126,7 +108,7 @@ toggleModal = () => {
 render() {
     return (
         <div>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+        <Modal className="modal" isOpen={this.state.modal} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>
                 Update a log entry.
             </ModalHeader>

@@ -34,4 +34,18 @@ body{
 
 a.nav_links{
     text-decoration: none!important;
+    color:#514663!important;
+}
+
+.navText {
+    color: #514663;
+}
+
+.button {
+    background-color: white!important;
+    color: #514663!important;
+}
+
+.button:hover{
+    background-color: gray!important;
 }

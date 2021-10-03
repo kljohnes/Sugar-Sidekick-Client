@@ -20,8 +20,8 @@ interface Values {
 }
 
 type Props = {
-    updateToken: (newToken: string) => void
-    // updateRole: {role: string} => void
+    updateToken: (newToken: string) => void,
+    updateRole: (role: string) => void
     // sessionToken: string;
 };
 
@@ -35,7 +35,7 @@ class UserLogin extends Component<Props, submitState> {
         super(props)
         this.state = {
             loggedIn: false,
-            role: "user"            
+            role: ''           
         }
         this.handleSubmit=this.handleSubmit.bind(this)
     }
@@ -53,7 +53,8 @@ class UserLogin extends Component<Props, submitState> {
             ).then((data) => {
                 if(data.message === "User successfully logged in."){
                     // window.localStorage.setItem('token', data.sessionToken)
-                    this.props.updateToken(data.sessionToken);
+                    this.props.updateToken(data.sessionToken)
+                    this.props.updateRole(data.user.role);
                     this.setState( { loggedIn: true })
                     console.log("Logged In!", data)
                     } else {
@@ -102,7 +103,6 @@ class UserLogin extends Component<Props, submitState> {
                 </div>
 
                 <Button type="submit">Submit</Button>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>)}
 
 

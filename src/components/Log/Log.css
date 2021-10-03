@@ -1,0 +1,21 @@
+.logTable {
+    margin-bottom: 5%;
+}
+
+.modal {
+    margin-bottom: 10%;
+}
+
+.logCreate {
+    display: grid;
+    justify-content: center;
+ 
+}
+
+.logForm {
+    border: 1px solid white;
+    border-radius: 5px;
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+}

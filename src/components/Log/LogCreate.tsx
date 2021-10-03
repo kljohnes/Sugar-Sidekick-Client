@@ -108,9 +108,9 @@ class LogCreate extends Component<LogProps, LogState> {
 
     render() {
         return (
-            <div>
+            <div className="logCreate">
                 <h1>Create a Log Entry</h1>
-                <form onSubmit={this.logCreate} >
+                <form className="logForm" onSubmit={this.logCreate} >
                
                         <div>
                             <TextField

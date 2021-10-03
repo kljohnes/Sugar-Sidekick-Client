@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import LogCreate from './LogCreate';
 import LogTable from './LogTable';
-import { Log } from './LogTable';
 import LogEdit from './LogEdit';
 import APIURL from '../../helpers/environment'
+import "./Log.css"
+
 
 type AcceptedProps = {
     token: string 
@@ -65,8 +66,8 @@ class LogIndex extends Component <AcceptedProps, LogIndexState>{
         return(
             <div>
             <div><LogCreate token={this.props.token} fetchLogs={this.fetchLogs}/></div>
-                <div><LogTable token={this.props.token} fetchLogs={this.fetchLogs} logs={this.state.logs} editUpdateLog={this.editUpdateLog} updateOn={this.updateOn}/></div>
-                <div>
+                <div className="logTable"><LogTable token={this.props.token} fetchLogs={this.fetchLogs} logs={this.state.logs} editUpdateLog={this.editUpdateLog} updateOn={this.updateOn}/></div>
+                <div className="editModal">
                     {this.state.updateActive ? (
                     <LogEdit 
                     logToUpdate={this.state.logToUpdate} 

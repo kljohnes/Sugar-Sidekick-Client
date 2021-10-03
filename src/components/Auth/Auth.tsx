@@ -46,7 +46,7 @@ render() {
         ): (
             <div>
                 <UserLogin 
-                updateToken={this.props.updateToken}/>
+                updateToken={this.props.updateToken} updateRole={this.props.updateRole}/>
                 </div>
         )}
 

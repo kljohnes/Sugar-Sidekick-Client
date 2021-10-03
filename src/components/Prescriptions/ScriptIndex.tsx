@@ -3,7 +3,7 @@ import ScriptCreate from './ScriptCreate';
 import ScriptTable from './ScriptTable';
 import ScriptEdit from './ScriptEdit';
 import APIURL from '../../helpers/environment'
-
+import "./Script.css"
 
 type AcceptedProps = {
     token: string 
@@ -64,7 +64,7 @@ class ScriptIndex extends Component <AcceptedProps, ScriptIndexState>{
         return(
             <div>
             <div><ScriptCreate token={this.props.token} fetchScripts={this.fetchScripts}/></div>
-                <div><ScriptTable token={this.props.token} fetchScripts={this.fetchScripts} scripts={this.state.scripts} editUpdateScript={this.editUpdateScript} updateOn={this.updateOn}/></div>
+                <div className="prescriptionDisplay"><ScriptTable token={this.props.token} fetchScripts={this.fetchScripts} scripts={this.state.scripts} editUpdateScript={this.editUpdateScript} updateOn={this.updateOn}/></div>
                 <div>
                     {this.state.updateActive ? (
                     <ScriptEdit 

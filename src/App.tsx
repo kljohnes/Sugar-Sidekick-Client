@@ -11,33 +11,35 @@ import AdminHome from './components/Admin/AdminHome'
 import Carbs from './components/CarbCount/Carbs'
 import Formspree from './components/formspree'
 import Profile from './components/Profile/Profile'
-
+import GetProfile from './components/Profile/GetProfile'
+import About from "./Site/About"
 
 
 type AppState = {
   token: string
-  role: string
+  role: string,
+
 }
-
-
-
-// let sessionToken = localStorage.getItem("token")
-
 class App extends Component< {}, AppState>{
   constructor(props: {}) {
     super(props);
     this.state = {
       token: '',
-      role: "user"
+      role: ''
     }
     // this.protectedViews = this.protectedViews.bind(this)
 
   }
 
-  componentDidMount() : void {
+  componentDidMount() {
     if(localStorage.getItem('token')){
       this.setState({
         token: localStorage.getItem('token')!,
+      })
+    }
+    if(localStorage.getItem('role')){
+      this.setState({
+        role: localStorage.getItem('role')!
       })
     }
     console.log("Component Did Mount")
@@ -53,38 +55,61 @@ class App extends Component< {}, AppState>{
   };
 
   updateRole = (newRole: string) => {
-    if (newRole !== null) {
-    this.setState({role: newRole})
+    // if (newRole !== null) {
     localStorage.setItem("role", newRole)
-  } else {
-    this.setState({role: "user"})
-    localStorage.setItem("role", "user")
-  }
+    this.setState({role: newRole})
+   
+  // } else {
+  //   this.setState({role: "user"})
+  //   localStorage.setItem("role", "user")
+  // }
 } 
-
-// protectedViews = () => {
-//     return this.state.token === localStorage.getItem("token") ? (
-//     <Route exact path='/'><Home/></Route> ): ( 
-//     <Route exact path= '/Auth'>
-//       <Auth 
-//       updateToken={this.updateToken}
-//       updateRole={this.updateRole}
-//     /></Route>)}
+protectedViews = () => {
+    return this.state.token === localStorage.getItem("token") ? (
+    <Home token={this.state.token}/> ): ( 
+    <Auth 
+      updateToken={this.updateToken}
+      updateRole={this.updateRole}/>
+    )}
     
+profileView = () => {
+      return this.state.token === localStorage.getItem("token") ? (
+      <GetProfile token={this.state.token}/> ): ( 
+      <Auth 
+        updateToken={this.updateToken}
+        updateRole={this.updateRole}/>
+      )}
+
+logView = () => {
+        return this.state.token === localStorage.getItem("token") ? (
+        <LogIndex token={this.state.token}/> ): ( 
+        <Auth 
+          updateToken={this.updateToken}
+          updateRole={this.updateRole}/>
+        )}
+prescriptionView = () => {
+          return this.state.token === localStorage.getItem("token") ? (
+          <ScriptIndex token={this.state.token}/> ): ( 
+          <Auth 
+            updateToken={this.updateToken}
+            updateRole={this.updateRole}/>
+          )}
+        
 adminViews = () => {
       return this.state.token === localStorage.getItem("token") && 
       this.state.role === "admin" ? (
-      <Route exact path='./AdminHome'><AdminHome token={this.state.token}/></Route> ): ( 
-      <Route exact path= '/Auth'>
+      <AdminHome token={this.state.token}/> ): ( 
         <Auth 
         updateToken={this.updateToken}
         updateRole={this.updateRole}
-      /></Route>)}
+      />)}
 
    
 clearToken = () => {
     localStorage.clear();
     this.setState({token: ""})
+    window.location.href='/Auth'
+
   }
 render() {
     return (
@@ -96,22 +121,19 @@ render() {
           clearToken={this.clearToken}
           updateRole={this.updateRole}
           />
-        <Switch>
-        <Route exact path='/CarbCount'><Carbs/></Route>
+      <Switch>
+        <Route exact path = '/'>{this.protectedViews}</Route>
         <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
-        <Route exact path = '/'><Home/></Route>
-        {/* {this.protectedViews()} */}
-        <Route exact path='/Profile'><Profile token={this.state.token}/></Route>
-        <Route exact path='/LogIndex'><LogIndex token={this.state.token}/></Route>
-        <Route exact path='/ScriptIndex'><ScriptIndex token={this.state.token}/></Route>
+        <Route exact path='/CarbCount'><Carbs/></Route>
+        <Route exact path='/About'><About/></Route>
+        <Route exact path='/Profile'>{this.profileView}</Route>
+        <Route exact path='/GetProfile'>{this.profileView}</Route>
+        <Route exact path='/LogIndex'>{this.logView}</Route>
+        <Route exact path='/ScriptIndex'>{this.prescriptionView}</Route>
         <Route exact path ='/Contact'><Formspree /></Route>
-        <Route exact path='/AdminHome'><AdminHome token={this.state.token}/></Route>
-        {/* {this.adminViews()} */}
-       {/* <Route exact path = "/auth"><Auth updateToken={this.updateToken}/></Route> */}
+        <Route exact path='/AdminHome'>{this.adminViews}</Route>
         </Switch>
       </Router>
-   
-      {/* // <LogCreate sessionToken={this.state.sessionToken} /> */}
       <Footer/>
       </div>
   );

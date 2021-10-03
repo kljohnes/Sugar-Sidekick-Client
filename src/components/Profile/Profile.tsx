@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { TextField, Button } from "@material-ui/core"
 import APIURL from '../../helpers/environment'
-
+import { Redirect } from "react-router-dom"
 
 type ProfileProps = {
-    // fetchProfile: () => void
     token: string
 }
 
@@ -12,6 +11,7 @@ type ProfileState = {
     first_name: string,
     diaversary: string
     location: string
+    submitted: boolean
 }
 
 class ProfileCreate extends Component<ProfileProps, ProfileState> {
@@ -21,6 +21,7 @@ class ProfileCreate extends Component<ProfileProps, ProfileState> {
             first_name: '',
             diaversary: '',
             location: '',
+            submitted: false
         }
     }
 
@@ -44,11 +45,11 @@ class ProfileCreate extends Component<ProfileProps, ProfileState> {
           .then(profileData => {
               console.log(profileData)
               this.setState({
-                  first_name: '',
-                  diaversary: '',
-                  location: '',
+                submitted: true,
+                first_name: this.state.first_name,
+                diaversary: this.state.diaversary,
+                location: this.state.location
             })
-            // this.props.fetchProfile()
           })}
     
 
@@ -68,6 +69,7 @@ class ProfileCreate extends Component<ProfileProps, ProfileState> {
     render() {
         return (
             <div>
+                {(this.state.submitted === true) ? <Redirect to="/GetProfile" /> : null}
                 <h1>Create Your Profile</h1>
                 <form onSubmit={this.ProfileCreate} >
                

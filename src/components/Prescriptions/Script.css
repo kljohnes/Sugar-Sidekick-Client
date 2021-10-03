@@ -1,0 +1,24 @@
+.prescriptionDisplay {
+    margin-bottom: 5%;
+}
+
+.scriptForm {
+    border: 1px solid white;
+    border-radius: 5px;
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+}
+
+.modal {
+    margin-bottom: 10%;
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+}
+
+.scriptCreate {
+    display: grid;
+    justify-content: center;
+ 
+}

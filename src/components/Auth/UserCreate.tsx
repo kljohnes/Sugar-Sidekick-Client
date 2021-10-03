@@ -117,23 +117,9 @@ class UserCreate extends Component<Props, submitState> {
                     <div>{errors.password}</div>
                 ) : null }
                 </div>
-          
-                {/* <div>
-                    <TextField
-                    name=" confirmPassword"
-                    label="Confirm Password"
-                    type="password"
-                    value=""
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    />
-                     {errors.confirmPassword && touched.confirmPassword ? (
-                    <div>{errors.confirmPassword}</div>
-                ) : null }
-                </div> */}
+
 
                 <Button type="submit">Submit</Button>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>)}
 
 

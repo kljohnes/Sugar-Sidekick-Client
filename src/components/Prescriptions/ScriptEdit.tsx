@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Button, FormGroup, TextField, Dialog } from "@material-ui/core"
+import { Button, FormGroup, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from "@material-ui/core"
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import APIURL from '../../helpers/environment'
+
 
 
 type ScriptEditProps = {
@@ -33,7 +34,7 @@ class ScriptEdit extends Component<ScriptEditProps, ScriptEditState> {
 
 scriptUpdate = () => {
     let token = localStorage.getItem('token')
-    fetch(`{${APIURL}/script/update/${this.props.scriptToUpdate.id}`, {
+    fetch(`${APIURL}/script/update/${this.props.scriptToUpdate.id}`, {
         method: "PUT",
         body: JSON.stringify({
             script: {
@@ -54,9 +55,6 @@ scriptUpdate = () => {
      
     })
 }
-
-
-
 handleChangeName = (e: any ) => { this.setState({
     name: e.target.value
 })}
@@ -73,7 +71,7 @@ handleChangeNotes= (e: any) => { this.setState({
     notes: e.target.value
 })}
 
-toggleModal = () => {
+handleClose = () => {
     this.setState({ modal: false })
     this.props.updateOff()
 }
@@ -81,11 +79,11 @@ toggleModal = () => {
 render() {
     return (
         <div>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-            <ModalHeader toggle={this.toggleModal}>
+        <Dialog className="modal" open={this.state.modal} onClose={this.handleClose}>
+            <DialogTitle >
                 Update a log entry.
-            </ModalHeader>
-            <ModalBody>
+            </DialogTitle>
+            <DialogContent>
             <div>
                     <TextField
                         label="Name"
@@ -101,8 +99,8 @@ render() {
                         onChange={this.handleChangeCategory}/>
                 </div>
                 <div>
+                    <p>Expiration</p>
                     <TextField
-                        label="Expiration Date"
                         type="date"
                         name="expiration"
                         onChange={this.handleChangeExp}/>
@@ -116,16 +114,63 @@ render() {
                         onChange={this.handleChangeNotes}/>
                 </div>
 
-    </ModalBody>
-    <ModalFooter>
+    </DialogContent>
+    <DialogActions>
         <Button onClick={() => {
             this.scriptUpdate() 
-            this.toggleModal()}}
+            this.handleClose()}}
             >Update</Button>
+            <Button onClick={this.handleClose}>Cancel</Button>
     {/* <Button onClick={this.deleteLog}>Delete</Button> */}
-    </ModalFooter>
-    </Modal>
+    </DialogActions>
+    </Dialog>
     </div>
+    //     <div>
+    //     <Modal className="modal" isOpen={this.state.modal} toggle={this.toggleModal}>
+    //         <ModalHeader toggle={this.toggleModal}>
+    //             Update a log entry.
+    //         </ModalHeader>
+    //         <ModalBody>
+    //         <div>
+    //                 <TextField
+    //                     label="Name"
+    //                     type="text"
+    //                     name="name"
+    //                     onChange={this.handleChangeName} />
+    //             </div>
+    //             <div>
+    //                 <TextField
+    //                     label="Category"
+    //                     type="text"
+    //                     name="category"
+    //                     onChange={this.handleChangeCategory}/>
+    //             </div>
+    //             <div>
+    //                 <p>Expiration</p>
+    //                 <TextField
+    //                     type="date"
+    //                     name="expiration"
+    //                     onChange={this.handleChangeExp}/>
+    //             </div>
+    //             <div>
+    //                 <TextField
+    //                     label="Notes"
+    //                     multiline
+    //                     type="text"
+    //                     name="notes"
+    //                     onChange={this.handleChangeNotes}/>
+    //             </div>
+
+    // </ModalBody>
+    // <ModalFooter>
+    //     <Button onClick={() => {
+    //         this.scriptUpdate() 
+    //         this.toggleModal()}}
+    //         >Update</Button>
+    // {/* <Button onClick={this.deleteLog}>Delete</Button> */}
+    // </ModalFooter>
+    // </Modal>
+    
 
     )
 }
