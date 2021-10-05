@@ -18,7 +18,7 @@
 }
 
 .homeText {
-    height: 30vh;
+    height: 20vh;
     text-align: center;
     font-family: 'Ephesis', cursive;
     font-size: 30px;
@@ -38,4 +38,9 @@
     margin-left: 10px;
     padding: 10px;
     border-radius: 5px;
+}
+
+.greetingText {
+    font-size: 2rem;
+    color: white;
 }

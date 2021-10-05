@@ -47,9 +47,9 @@ render() {
             <div className="greetingText">
             {this.state.first_name ? 
             <h4>Hi, {this.state.first_name}!</h4>: null }
+            </div>
             <div className="homeText">
               <h1>Welcome To Sugar Sidekick</h1>
-              </div>
               </div>
               <div>
               <Button className="button" id="button1" href="/About">About</Button>
