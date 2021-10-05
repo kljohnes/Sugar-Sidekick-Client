@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button,TextField, Radio, RadioGroup, FormControl, FormLabel } from "@material-ui/core"
+import { Button,TextField, Radio, RadioGroup, FormControl, FormLabel, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"
 import { Modal, ModalHeader , ModalBody, ModalFooter } from 'reactstrap'
 import { FormControlLabel } from '@mui/material'
 import APIURL from '../../helpers/environment'
@@ -53,19 +53,19 @@ userUpdate = () => {
     })
 }
 
-handleChangeEmail = (e: any ) => { this.setState({
+handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement> ) => { this.setState({
     email: e.target.value
 })}
 
-handleChangeRole = (e: any) => { this.setState({
+handleChangeRole = (e: React.ChangeEvent<HTMLInputElement>) => { this.setState({
         role: e.target.value
 })}
 
-handleChangePassword = (e: any) => { this.setState({
+handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => { this.setState({
     password: e.target.value
 })}
 
-toggleModal = () => {
+handleClose = () => {
     this.setState({ modal: false })
     this.props.updateOff()
 }
@@ -73,11 +73,11 @@ toggleModal = () => {
 render() {
     return (
         <div>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-            <ModalHeader toggle={this.toggleModal}>
+        <Dialog open={this.state.modal} onClose={this.handleClose}>
+            <DialogTitle>
                 Update a user.
-            </ModalHeader>
-            <ModalBody>
+            </DialogTitle>
+            <DialogContent>
             <div>
                     <TextField
                         label="Email"
@@ -105,14 +105,15 @@ render() {
                 </FormControl>
 
                 </div>
-    </ModalBody>
-    <ModalFooter>
+    </DialogContent>
+    <DialogActions>
         <Button className="button" onClick={() => {
             this.userUpdate() 
-            this.toggleModal()}}
-            >Update</Button>
-    </ModalFooter>
-    </Modal>
+            this.handleClose()}}
+            >Update</Button> 
+        <Button className="button" onClick={this.handleClose}>Cancel</Button>
+    </DialogActions>
+    </Dialog>
     </div>
 
     )

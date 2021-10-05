@@ -3,6 +3,7 @@ import {TextField, Typography, Card, Button, Grid} from "@material-ui/core"
 import "./Carbs.css"
 
 
+
 type AcceptedProps = {
 
 }
@@ -53,7 +54,7 @@ export default class Carbs extends Component<AcceptedProps, CarbState> {
         }
     }
 
-fetchCarbCount = (event:any) => {
+fetchCarbCount = ():void => {
  fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm}`)
     .then (res => res.json())
     .then (json => {
@@ -70,7 +71,7 @@ fetchCarbCount = (event:any) => {
     .catch((error) => console.log(error))
 }
 
-fetchCarbCount2 = (event:any) => {
+fetchCarbCount2 = ():void => {
     fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm2}`)
     .then (res => res.json())
     .then (json => {
@@ -85,7 +86,7 @@ fetchCarbCount2 = (event:any) => {
     .catch((error) => console.log(error))
 }
 
-fetchCarbCount3 = (event:any) => {
+fetchCarbCount3 = ():void => {
     fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm3}`)
     .then (res => res.json())
     .then (json => {
@@ -100,7 +101,7 @@ fetchCarbCount3 = (event:any) => {
     .catch((error) => console.log(error))
 }
 
-fetchCarbCount4 = (event:any) => {
+fetchCarbCount4 = ():void => {
     fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm4}`)
     .then (res => res.json())
     .then (json => {
@@ -115,7 +116,7 @@ fetchCarbCount4 = (event:any) => {
     .catch((error) => console.log(error))
 }
 
-fetchCarbCount5 = (event:any) => {
+fetchCarbCount5 = ():void => {
     fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm5}`)
     .then (res => res.json())
     .then (json => {
@@ -130,7 +131,7 @@ fetchCarbCount5 = (event:any) => {
     .catch((error) => console.log(error))
 }
 
-fetchCarbCount6 = (event: any) => {
+fetchCarbCount6 = ():void => {
     fetch (`https://api.edamam.com/api/nutrition-data?app_id=f660cb54&app_key=5a687d3cbcb22f0ed537eec6d8f8a82a&nutrition-type=cooking&ingr=${this.state.searchTerm6}`)
     .then (res => res.json())
     .then (json => {
@@ -145,40 +146,30 @@ fetchCarbCount6 = (event: any) => {
     .catch((error) => console.log(error))
 }
 
-handleSearch1 = (e: any ) => { this.setState({
+handleSearch1 = (e: React.ChangeEvent<HTMLInputElement>) => { this.setState({
         searchTerm: e.target.value
     })}
     
-handleSearch2 = (e: any ) => { this.setState({
+handleSearch2 = (e: React.ChangeEvent<HTMLInputElement> ) => { this.setState({
         searchTerm2: e.target.value
     })}
 
-handleSearch3 = (e: any ) => { this.setState({
+handleSearch3 = (e: React.ChangeEvent<HTMLInputElement>) => { this.setState({
         searchTerm3: e.target.value
     })}
-handleSearch4 = (e: any ) => { this.setState({
+handleSearch4 = (e: React.ChangeEvent<HTMLInputElement> ) => { this.setState({
         searchTerm4: e.target.value
     })}
-handleSearch5 = (e: any ) => { this.setState({
+handleSearch5 = (e: React.ChangeEvent<HTMLInputElement>) => { this.setState({
         searchTerm5: e.target.value
     })}
-handleSearch6 = (e: any ) => { this.setState({
+handleSearch6 = (e: React.ChangeEvent<HTMLInputElement> ) => { this.setState({
         searchTerm6: e.target.value
     })}
 
-handleAddition = (e: any) => { this.setState({
+handleAddition = (e: React.FormEvent) => { this.setState({
     total: this.state.carbs + this.state.carbs2 + this.state.carbs3 + this.state.carbs4 + this.state.carbs5 + this.state.carbs6
 })}
-
-// carbDisplay = (e: any) => {
-//     return (
-//     <div id="carb data">
-//         <p>{this.state.carbs}</p>
-//     </div>
-//     )
-// }
-
-
 
     render() {
         return (
@@ -196,7 +187,7 @@ handleAddition = (e: any) => { this.setState({
                 onChange={this.handleSearch1}
                 ></TextField>
                 <Button onClick={(e) => {
-                    this.fetchCarbCount(e)}
+                    this.fetchCarbCount()}
                 }>+</Button>
                 </div>
                 <div>
@@ -206,7 +197,7 @@ handleAddition = (e: any) => { this.setState({
                 onChange={this.handleSearch2}
                 ></TextField>
                 <Button onClick={(e) => {
-                    this.fetchCarbCount2(e)}
+                    this.fetchCarbCount2()}
                 }>+</Button>
                 </div>
                 <div>
@@ -216,7 +207,7 @@ handleAddition = (e: any) => { this.setState({
                 onChange={this.handleSearch3}
                 ></TextField>
                 <Button onClick={(e) => {
-                    this.fetchCarbCount3(e)}
+                    this.fetchCarbCount3()}
                 }>+</Button>
                 </div>
                 <div>
@@ -226,7 +217,7 @@ handleAddition = (e: any) => { this.setState({
                 onChange={this.handleSearch4}
                 ></TextField>
                 <Button onClick={(e) => {
-                    this.fetchCarbCount4(e)}
+                    this.fetchCarbCount4()}
                 }>+</Button>
                 </div>
                 <div>
@@ -236,7 +227,7 @@ handleAddition = (e: any) => { this.setState({
                 onChange={this.handleSearch5}
                 ></TextField>
                 <Button onClick={(e) => {
-                    this.fetchCarbCount5(e)}
+                    this.fetchCarbCount5()}
                 }>+</Button>
                 </div>
                 <div>
@@ -246,7 +237,7 @@ handleAddition = (e: any) => { this.setState({
                 onChange={this.handleSearch6}
                 ></TextField>
                 <Button onClick={(e) => {
-                    this.fetchCarbCount6(e)}
+                    this.fetchCarbCount6()}
                 }>+</Button>
                 </div>
                </div>

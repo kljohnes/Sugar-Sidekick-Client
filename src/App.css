@@ -108,3 +108,7 @@ a.nav_links{
 .formButton:hover {
     background-color: gray;
 }
+
+.about {
+    text-align: center;
+}

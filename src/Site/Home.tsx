@@ -44,10 +44,12 @@ class Home extends Component<AcceptedProps, HomeState> {
 render() {
     return (
         <div className="Home">
-            <div className="homeText">
+            <div className="greetingText">
             {this.state.first_name ? 
-            <h5>Hi, {this.state.first_name}!</h5>: null }
+            <h4>Hi, {this.state.first_name}!</h4>: null }
+            <div className="homeText">
               <h1>Welcome To Sugar Sidekick</h1>
+              </div>
               </div>
               <div>
               <Button className="button" id="button1" href="/About">About</Button>

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 import {BsPencilSquare, BsFillHouseDoorFill, BsFillPersonFill} from 'react-icons/bs'
 import {FaFilePrescription} from 'react-icons/fa'
 import {BiCalculator, BiHelpCircle, BiLock } from 'react-icons/bi'
-
+import { GiCancel } from "react-icons/gi"
 
 
 type AcceptedProps = {
@@ -54,14 +54,12 @@ render() {
             <Tooltip title="Prescriptions"><IconButton edge="start" color="secondary" aria-label="menu"> 
             <Link className="nav_links" to="/ScriptIndex"><FaFilePrescription/></Link></IconButton></Tooltip>
             <Tooltip title="Carb Calculator"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/CarbCount"><BiCalculator/></Link></IconButton></Tooltip>
-            <Tooltip title="Admin"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/AdminHome"><BiLock/></Link></IconButton></Tooltip>
-            <Tooltip title="Contact"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/Contact"><BiHelpCircle/></Link></IconButton></Tooltip>
-            <Button color="primary" onClick={this.props.clearToken} ><Typography>Log Out</Typography></Button>
-           
+          <Tooltip title="Contact"><IconButton edge="start" color="secondary"><Link className="nav_links" to="/Contact"><BiHelpCircle/></Link></IconButton></Tooltip>
+            <Tooltip title="Log Out"><IconButton edge="start" style={{color: "#4D5382"}} className="nav_links" onClick={this.props.clearToken} ><GiCancel/></IconButton></Tooltip>
             </Toolbar>
-            </AppBar>
+          </AppBar>
         
-    );
+    )
   }
   }
   export default Nav;

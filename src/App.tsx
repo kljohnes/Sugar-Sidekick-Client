@@ -58,27 +58,23 @@ class App extends Component< {}, AppState>{
     // if (newRole !== null) {
     localStorage.setItem("role", newRole)
     this.setState({role: newRole})
-   
-  // } else {
-  //   this.setState({role: "user"})
-  //   localStorage.setItem("role", "user")
-  // }
 } 
-// protectedViews = () => {
-//     return this.state.token === localStorage.getItem("token") ? (
-//     <Home token={this.state.token}/> ): ( 
-//     <Auth 
-//       updateToken={this.updateToken}
-//       updateRole={this.updateRole}/>
-//     )}
+
     
 profileView = () => {
       return this.state.token === localStorage.getItem("token") ? (
-      <GetProfile token={this.state.token}/> ): ( 
+      <Profile token={this.state.token}/> ): ( 
       <Auth 
         updateToken={this.updateToken}
         updateRole={this.updateRole}/>
       )}
+getProfileView = () => {
+  return this.state.token === localStorage.getItem("token") ? (
+    <GetProfile token={this.state.token}/> ): ( 
+    <Auth 
+      updateToken={this.updateToken}
+      updateRole={this.updateRole}/>
+    )}
 
 logView = () => {
         return this.state.token === localStorage.getItem("token") ? (
@@ -126,15 +122,16 @@ render() {
         <Route exact path ='/Auth'><Auth updateToken={this.updateToken} updateRole={this.updateRole}/></Route>
         <Route exact path='/CarbCount'><Carbs/></Route>
         <Route exact path='/About'><About/></Route>
+        <Route exact path='/GetProfile'>{this.getProfileView}</Route>
         <Route exact path='/Profile'>{this.profileView}</Route>
-        <Route exact path='/GetProfile'>{this.profileView}</Route>
         <Route exact path='/LogIndex'>{this.logView}</Route>
         <Route exact path='/ScriptIndex'>{this.prescriptionView}</Route>
         <Route exact path ='/Contact'><Formspree /></Route>
         <Route exact path='/AdminHome'>{this.adminViews}</Route>
         </Switch>
+        <Footer/>
       </Router>
-      <Footer/>
+    
       </div>
   );
   }

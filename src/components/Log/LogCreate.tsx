@@ -161,7 +161,7 @@ class LogCreate extends Component<LogProps, LogState> {
                                 onChange={this.handleChangeLongActing}/>
                             
                         </div>
-                        <div>
+                        <div style={{marginBottom: "15px"}}>
                             <TextField
                                 label="Notes"
                                 multiline
@@ -169,7 +169,7 @@ class LogCreate extends Component<LogProps, LogState> {
                                 name="notes"
                                 onChange={this.handleChangeNotes}/>
                         </div>
-                        <Button type="submit">SUBMIT</Button>
+                        <Button className="button" type="submit">SUBMIT</Button>
              
                 </form>
             </div>

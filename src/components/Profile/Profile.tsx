@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { TextField, Button } from "@material-ui/core"
 import APIURL from '../../helpers/environment'
 import { Redirect } from "react-router-dom"
+import "../../App.css"
 
 type ProfileProps = {
     token: string
@@ -68,34 +69,34 @@ class ProfileCreate extends Component<ProfileProps, ProfileState> {
     
     render() {
         return (
-            <div>
+            <div style={{display: "grid", justifyContent: "center"}}>
                 {(this.state.submitted === true) ? <Redirect to="/GetProfile" /> : null}
                 <h1>Create Your Profile</h1>
-                <form onSubmit={this.ProfileCreate} >
+                <form style={{display: "grid", justifyContent: "center", border: "1px solid white", borderRadius: "5px", padding: "20px"}} onSubmit={this.ProfileCreate} >
                
                         <div>
                             <TextField
-                                label="first_name"
+                                label="First Name"
                                 type="text"
                                 name="first_name"
                                 onChange={this.handleChangeName} />
                         </div>
                         <div>
                             <TextField
-                                label="diaversary"
+                                label="Diaversary"
                                 type="text"
                                 name="diaversary"
                                 onChange={this.handleChangeDiaversary}/>
                         </div>
-                        <div>
+                        <div style={{marginBottom: "15px"}}  >
                             <p>Location</p>
                             <TextField
                                 name="location"
                                 type="text"
-                                label="location"
+                                label="Location"
                                 onChange={this.handleChangeLocation}/>
                         </div>
-                        <Button type="submit">SUBMIT</Button>
+                        <Button className="button" type="submit">SUBMIT</Button>
              
                 </form>
             </div>

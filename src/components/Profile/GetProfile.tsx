@@ -57,13 +57,14 @@ fetchProfile = ():void => {
 }
     render() {
         return (
-            <div>
+            <div style={{display: "grid", justifyContent: "center"}}>
                 {(this.state.existingProfile === false) ? <Redirect to ="/Profile"/> : null}
-                <h1>My Profile</h1>
+                <div style={{border: "1px solid white", borderRadius: "5px", marginTop: "20%", padding: "15px"}}>
+                <h1>My Profile:</h1>
                 <p>First Name: {this.state.profile.first_name}</p>
                 <p>Diaversary: {this.state.profile.diaversary}</p>
                 <p>Location: {this.state.profile.location}</p>
-                
+                </div>
             </div>
         )
     }

@@ -20,7 +20,7 @@ class Auth extends Component<AcceptedProps, AuthState>{
         };
     }
 
-    toggler = (event: any) => {
+    toggler = () => {
         if (this.state.loginForm === false) {
             return this.setState({
                 loginForm: true,

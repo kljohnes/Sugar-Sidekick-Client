@@ -49,7 +49,6 @@ userMapper = () => {
                 <TableCell>{user.id}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.role}</TableCell>
-                <TableCell>{user.password}</TableCell>
                 <TableCell>
           <Button className="button" onClick={() => {
             this.props.editUpdateUser(user)
@@ -78,7 +77,6 @@ render() {
                         <TableCell>ID</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Role</TableCell>
-                        <TableCell>Password</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>{this.userMapper()}</TableBody>

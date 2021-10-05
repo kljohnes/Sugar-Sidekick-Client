@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { TextField, Typography, Button } from "@material-ui/core";
-import { Form, Formik, validateYupSchema } from "formik"
+import { Form, Formik } from "formik"
 import * as Yup from 'yup'
 import { Redirect } from 'react-router-dom'
 import APIURL from '../../helpers/environment'
@@ -66,7 +66,7 @@ class UserLogin extends Component<Props, submitState> {
  render() {
         return (
         <div className="login">
-        {( this.state.loggedIn === true && this.state.role === "admin" ) ? <Redirect to= '/AdminHome' /> : null}
+        {( this.state.loggedIn === true) ? <Redirect to= '/'/> : null}
         <Typography variant="h4">Please Log In</Typography>
             <Formik
             initialValues={{email: '', password: ''}}
