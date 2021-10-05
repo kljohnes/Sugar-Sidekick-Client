@@ -7,7 +7,7 @@
 
 ### This app also features a carb calculator powered by the Edamam API. Users can input up to 6 different foods at a time and calculate the total carb count.
 
-### This app features role-based access control. At this point, only an Admin can register users. This is due to the nature of the app (medical data), and the fact that it is still in development. Access is restricted for security reasons. Users can currently access the contact form and request registration. The code for users to create accounts has been written and is included in this repository, but it isn't active on the client side at this time.
+### This app features role-based access control. At this point, only an Admin can register users. This is due to the nature of the app (medical data), and the fact that it is still in development. Access is restricted for security reasons. Anyone can currently access the contact form and request registration. The code for users to create accounts has been written and is included in this repository, but it isn't active on the client side at this time.
 
 ## To test the features of the app, you can use the test user:
     email: user@email.com
